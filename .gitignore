@@ -1,0 +1,28 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+.env
+*.log
+
+# Node
+node_modules/
+dist/
+.env.local
+
+# Project Specific
+piper/piper
+piper/piper_phonemize
+piper/lib*
+piper/models/
+piper/espeak-ng*
+piper/pkgconfig/
+srv/rag-data/
+*.tar.gz
+app_db_*.sql
+scratch/
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
