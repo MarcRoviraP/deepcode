@@ -1,0 +1,444 @@
+{
+  "id": "20260508101953.629794891",
+  "created_at": "2026-05-08T10:19:53.740377803Z",
+  "root_dir": "/home/deepcode/.gentle-ai/backups/20260508101953.629794891",
+  "entries": [
+    {
+      "original_path": "/home/deepcode/.copilot/skills/sdd-explore/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/antigravity/skills/_shared/engram-convention.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/antigravity/skills/_shared/sdd-phase-common.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/skills/issue-creation/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.copilot/skills/issue-creation/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.config/Code/User/mcp.json",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.copilot/skills/sdd-apply/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/skills/skill-registry/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/antigravity/skills/sdd-explore/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.copilot/skills/branch-pr/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/antigravity/skills/issue-creation/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/antigravity/skills/sdd-propose/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/antigravity/skills/skill-registry/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/skills/_shared/openspec-convention.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/settings.json",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.config/Code/User/prompts/gentle-ai.instructions.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.config/gga/AGENTS.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/skills/sdd-init/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.copilot/skills/sdd-tasks/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/antigravity/skills/sdd-design/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/skills/chained-pr/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.copilot/skills/_shared/openspec-convention.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.config/opencode/tui.json",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/skills/sdd-spec/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.copilot/skills/_shared/engram-convention.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/antigravity/skills/_shared/skill-resolver.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/antigravity/skills/comment-writer/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/antigravity/settings.json",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.copilot/skills/_shared/persistence-contract.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.copilot/skills/sdd-init/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.copilot/skills/sdd-spec/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.copilot/skills/sdd-design/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/skills/sdd-onboard/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.copilot/skills/judgment-day/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/skills/skill-creator/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/antigravity/skills/cognitive-doc-design/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/skills/sdd-design/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/antigravity/skills/_shared/openspec-convention.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/antigravity/skills/sdd-apply/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/skills/cognitive-doc-design/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.copilot/skills/sdd-onboard/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/antigravity/skills/sdd-onboard/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/antigravity/skills/work-unit-commits/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/skills/_shared/engram-convention.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/skills/sdd-propose/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/skills/sdd-tasks/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.copilot/skills/sdd-propose/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.copilot/skills/sdd-archive/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/antigravity/skills/_shared/persistence-contract.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/skills/judgment-day/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/skills/work-unit-commits/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.config/opencode/tui-plugins/gentle-logo.tsx",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/skills/_shared/sdd-phase-common.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/skills/sdd-archive/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/skills/_shared/persistence-contract.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.copilot/skills/sdd-verify/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/antigravity/skills/sdd-init/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/antigravity/skills/sdd-archive/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/skills/branch-pr/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.copilot/skills/comment-writer/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.config/gga/config",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.copilot/skills/_shared/sdd-phase-common.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/antigravity/skills/sdd-spec/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/antigravity/skills/sdd-verify/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.copilot/skills/skill-creator/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.copilot/skills/skill-registry/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.copilot/skills/cognitive-doc-design/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/antigravity/skills/judgment-day/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/skills/go-testing/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/skills/_shared/skill-resolver.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/skills/sdd-apply/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.copilot/skills/work-unit-commits/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/antigravity/skills/skill-creator/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/antigravity/skills/branch-pr/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/antigravity/skills/chained-pr/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.config/Code/User/settings.json",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/antigravity/mcp_config.json",
+      "snapshot_path": "files/home/deepcode/.gemini/antigravity/mcp_config.json",
+      "existed": true,
+      "mode": 420
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/skills/comment-writer/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.copilot/skills/chained-pr/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/skills/sdd-explore/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/skills/sdd-verify/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/antigravity/skills/sdd-tasks/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.copilot/skills/go-testing/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/antigravity/skills/go-testing/SKILL.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.gemini/GEMINI.md",
+      "snapshot_path": "",
+      "existed": false
+    },
+    {
+      "original_path": "/home/deepcode/.copilot/skills/_shared/skill-resolver.md",
+      "snapshot_path": "",
+      "existed": false
+    }
+  ],
+  "source": "install",
+  "description": "pre-install snapshot",
+  "file_count": 1,
+  "created_by_version": "1.26.5",
+  "compressed": true,
+  "checksum": "750f188d69d4d11df051488c945d6187a92be305ec594b4362f842949cd5ae81"
+}

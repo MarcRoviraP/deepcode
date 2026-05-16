@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "autoskills": "^0.3.6"
+  },
+  "_npx": {
+    "packages": [
+      "autoskills"
+    ]
+  }
+}

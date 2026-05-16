@@ -15,6 +15,7 @@ from sentence_transformers import SentenceTransformer
 app = Flask(__name__)
 CORS(app)
 
+
 # Inicializar modelo de embeddings (768 dim)
 model = SentenceTransformer("all-mpnet-base-v2")
 

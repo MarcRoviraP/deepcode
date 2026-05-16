@@ -16,6 +16,11 @@ Este repositorio contiene todo lo necesario para replicar el servidor de DeepTut
    ```
 
 ## 2. Configuración del Backend (Python)
+Existen dos APIs de Flask:
+1. **API Principal** (`app.py`): Gestión de base de datos, RAG y ejecución de código. Puerto 5001.
+2. **API TTS** (`piper/src/app.py`): Conversión de texto a voz. Puerto 5000.
+
+### Instalación:
 1. Crea un entorno virtual:
    ```bash
    python3 -m venv venv
@@ -30,9 +35,10 @@ Este repositorio contiene todo lo necesario para replicar el servidor de DeepTut
    cp .env.example .env
    # Edita .env con tus credenciales
    ```
-4. Ejecuta la API:
+4. Ejecuta las APIs (puedes usar tmux o systemd):
    ```bash
-   python app.py
+   python app.py &
+   python piper/src/app.py &
    ```
 
 ## 3. Configuración del Frontend (Node.js)

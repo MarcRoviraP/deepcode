@@ -1,0 +1,8 @@
+{
+  "installed_agents": [
+    "gemini-cli",
+    "vscode-copilot",
+    "antigravity"
+  ],
+  "persona": "gentleman"
+}
