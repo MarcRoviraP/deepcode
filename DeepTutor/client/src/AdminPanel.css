@@ -180,18 +180,12 @@
   margin-top: 16px;
 }
 
-/* --- Cuadrícula Principal (2 columnas) --- */
+/* --- Cuadrícula Principal (2 filas de ancho completo) --- */
 .admin-grid {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 1fr;
   gap: 30px;
   align-items: start;
-}
-
-@media (max-width: 1100px) {
-  .admin-grid {
-    grid-template-columns: 1fr;
-  }
 }
 
 .admin-col {
@@ -256,7 +250,7 @@
 @media (max-width: 600px) {
   .form-row-2, .form-row-3 {
     grid-template-columns: 1fr;
-    gap: 0;
+    gap: 16px;
   }
 }
 
@@ -906,4 +900,228 @@
 .toast-info {
   border-left: 4px solid #818cf8;
   box-shadow: 0 10px 30px rgba(129, 140, 248, 0.15);
+}
+
+/* --- Media Queries de Responsividad Completa --- */
+
+/* Ajustar el contenedor general y la cabecera */
+@media (max-width: 768px) {
+  .admin-wrapper {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .admin-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .header-left {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .title-group h1 {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .subtitle-admin {
+    text-align: center;
+    font-size: 0.8rem;
+  }
+
+  .btn-back {
+    width: 100%;
+    text-align: center;
+  }
+
+  .header-right {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .card-admin {
+    padding: 20px;
+    border-radius: 16px;
+  }
+}
+
+/* Ajustar la configuración de conexión */
+@media (max-width: 600px) {
+  .config-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .config-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .config-buttons button {
+    width: 100%;
+  }
+}
+
+/* Ajustar el constructor dinámico (ejemplos y casos de prueba) */
+@media (max-width: 600px) {
+  .builder-row {
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    padding: 40px 12px 12px 12px;
+  }
+
+  .row-num {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    align-self: flex-start;
+  }
+
+  .btn-remove-item {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .textarea-wrapper {
+    width: 100%;
+  }
+
+  .form-submit-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .btn-submit,
+  .btn-cancel {
+    width: 100%;
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+  
+  .builder-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .builder-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .builder-actions button {
+    flex: 1;
+    text-align: center;
+    padding: 8px;
+    font-size: 0.75rem;
+  }
+}
+
+/* Adaptar listado y tabla a tarjetas en móviles */
+@media (max-width: 768px) {
+  .exercises-table-container {
+    border: none;
+  }
+
+  .exercises-table, 
+  .exercises-table thead, 
+  .exercises-table tbody, 
+  .exercises-table tr, 
+  .exercises-table td, 
+  .exercises-table th {
+    display: block;
+  }
+
+  .exercises-table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .exercises-table tr {
+    margin-bottom: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    background: rgba(15, 23, 42, 0.4);
+    padding: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .exercises-table td {
+    border: none;
+    position: relative;
+    padding: 8px 0 8px 35%;
+    text-align: right;
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  }
+  
+  .exercises-table td:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .exercises-table td::before {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 30%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: 700;
+    color: #64748b;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Etiquetas de contenido */
+  .exercises-table td:nth-of-type(1)::before { content: "ID"; }
+  .exercises-table td:nth-of-type(2)::before { content: "Ejercicio"; }
+  .exercises-table td:nth-of-type(3)::before { content: "Tópico"; }
+  .exercises-table td:nth-of-type(4)::before { content: "Dificultad"; }
+  .exercises-table td:nth-of-type(5)::before { content: "Casos"; }
+  .exercises-table td:nth-of-type(6)::before { content: "Acciones"; }
+
+  .col-id {
+    font-family: 'DM Mono', monospace;
+  }
+
+  .col-title {
+    flex-direction: column;
+    align-items: flex-end !important;
+    text-align: right;
+  }
+
+  .desc-truncated {
+    text-align: right;
+    margin-top: 2px;
+  }
+
+  .col-actions {
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: 4px;
+  }
+  
+  .filters-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
 }

@@ -37,16 +37,20 @@ export default function AdminPanel({ onBack }) {
   const [entrada, setEntrada] = useState('');
   const [salida, setSalida] = useState('');
   const [requisitos, setRequisitos] = useState('');
-  
-  // Listas dinámicas para Ejemplos y Casos de Prueba
-  const [examples, setExamples] = useState([{ Entrada: '', Salida: '' }]);
-  const [testCases, setTestCases] = useState([{ Entrada: '', Salida: '' }]);
+
+  // Listas de Ejemplos y Casos de Prueba (JSON)
+  const [examples, setExamples] = useState('[\n  {\n    "Entrada": "",\n    "Salida": ""\n  }\n]');
+  const [testCases, setTestCases] = useState('[\n  {\n    "Entrada": "",\n    "Salida": ""\n  }\n]');
 
   // Formulario de Nuevo Tópico
   const [showTopicModal, setShowTopicModal] = useState(false);
   const [newTopicNombre, setNewTopicNombre] = useState('');
   const [newTopicDescripcion, setNewTopicDescripcion] = useState('');
   const [newTopicParentId, setNewTopicParentId] = useState('');
+
+  // Formulario de Importar JSON
+  const [showImportModal, setShowImportModal] = useState(false);
+  const [importJsonText, setImportJsonText] = useState('');
 
   // Guardar configuración en localStorage
   useEffect(() => {
@@ -108,48 +112,8 @@ export default function AdminPanel({ onBack }) {
     }
   };
 
-  // Manejar Ejemplos
-  const handleExampleChange = (index, field, value) => {
-    const updated = [...examples];
-    updated[index][field] = value;
-    setExamples(updated);
-  };
-
-  const addExample = () => {
-    setExamples([...examples, { Entrada: '', Salida: '' }]);
-  };
-
-  const removeExample = (index) => {
-    if (examples.length === 1) {
-      setExamples([{ Entrada: '', Salida: '' }]);
-    } else {
-      setExamples(examples.filter((_, i) => i !== index));
-    }
-  };
-
-  // Manejar Casos de Prueba
-  const handleTestCaseChange = (index, field, value) => {
-    const updated = [...testCases];
-    updated[index][field] = value;
-    setTestCases(updated);
-  };
-
-  const addTestCase = () => {
-    setTestCases([...testCases, { Entrada: '', Salida: '' }]);
-  };
-
-  const removeTestCase = (index) => {
-    if (testCases.length === 1) {
-      setTestCases([{ Entrada: '', Salida: '' }]);
-    } else {
-      setTestCases(testCases.filter((_, i) => i !== index));
-    }
-  };
-
   const copyExamplesToTestCases = () => {
-    // Copia profunda
-    const copied = examples.map(ex => ({ ...ex }));
-    setTestCases(copied);
+    setTestCases(examples);
     showToast('info', 'Ejemplos copiados a Casos de Prueba.');
   };
 
@@ -170,11 +134,11 @@ export default function AdminPanel({ onBack }) {
 
       const res = await axios.post(`${apiUrl}/topics`, payload, { headers: getHeaders() });
       showToast('success', `Tópico "${newTopicNombre}" creado correctamente.`);
-      
+
       // Actualizar lista de tópicos
       const topRes = await axios.get(`${apiUrl}/topics`, { headers: getHeaders() });
       setTopics(topRes.data || []);
-      
+
       // Pre-seleccionar el recién creado
       if (res.data && res.data.id) {
         setTopicId(res.data.id.toString());
@@ -198,15 +162,32 @@ export default function AdminPanel({ onBack }) {
     if (!descripcion.trim()) return showToast('error', 'La descripción es obligatoria.');
     if (!topicId) return showToast('error', 'Debes seleccionar un tópico.');
 
-    // Validar ejemplos y casos de prueba
-    const filteredExamples = examples.filter(ex => ex.Entrada.trim() !== '' || ex.Salida.trim() !== '');
-    const filteredTestCases = testCases.filter(tc => tc.Entrada.trim() !== '' || tc.Salida.trim() !== '');
-
-    if (filteredExamples.length === 0) {
-      return showToast('error', 'Debes añadir al menos un ejemplo visible para el alumno.');
+    // Validar y parsear ejemplos (JSON string -> array)
+    let parsedExamples;
+    try {
+      parsedExamples = JSON.parse(examples);
+      if (!Array.isArray(parsedExamples)) {
+        return showToast('error', 'El campo Ejemplos debe ser un array JSON válido (ej: [{"Entrada": "...", "Salida": "..."}]).');
+      }
+      if (parsedExamples.length === 0) {
+        return showToast('error', 'Debes añadir al menos un ejemplo en el array de Ejemplos.');
+      }
+    } catch (err) {
+      return showToast('error', 'Error de sintaxis JSON en Ejemplos: ' + err.message);
     }
-    if (filteredTestCases.length === 0) {
-      return showToast('error', 'Debes añadir al menos un caso de prueba para la evaluación.');
+
+    // Validar y parsear casos de prueba (JSON string -> array)
+    let parsedTestCases;
+    try {
+      parsedTestCases = JSON.parse(testCases);
+      if (!Array.isArray(parsedTestCases)) {
+        return showToast('error', 'El campo Casos de Prueba debe ser un array JSON válido.');
+      }
+      if (parsedTestCases.length === 0) {
+        return showToast('error', 'Debes añadir al menos un caso de prueba.');
+      }
+    } catch (err) {
+      return showToast('error', 'Error de sintaxis JSON en Casos de Prueba: ' + err.message);
     }
 
     const payload = {
@@ -217,8 +198,8 @@ export default function AdminPanel({ onBack }) {
       entrada: entrada.trim(),
       salida: salida.trim(),
       requisitos: requisitos.trim() || null,
-      ejemplos: filteredExamples,
-      casos_prueba: filteredTestCases
+      ejemplos: parsedExamples,
+      casos_prueba: parsedTestCases
     };
 
     setLoading(true);
@@ -232,7 +213,7 @@ export default function AdminPanel({ onBack }) {
         await axios.post(`${apiUrl}/ejercicios`, payload, { headers: getHeaders() });
         showToast('success', 'Ejercicio creado correctamente en la base de datos.');
       }
-      
+
       resetForm();
       fetchInitialData();
     } catch (err) {
@@ -252,21 +233,27 @@ export default function AdminPanel({ onBack }) {
     setEntrada(ex.entrada || '');
     setSalida(ex.salida || '');
     setRequisitos(ex.requisitos || '');
-    
-    // Parsear ejemplos
-    try {
-      const parsedExamples = typeof ex.ejemplos === 'string' ? JSON.parse(ex.ejemplos) : ex.ejemplos;
-      setExamples(parsedExamples && parsedExamples.length ? parsedExamples : [{ Entrada: '', Salida: '' }]);
-    } catch (e) {
-      setExamples([{ Entrada: '', Salida: '' }]);
+
+    // Parsear ejemplos a string JSON formateado
+    if (typeof ex.ejemplos === 'string') {
+      try {
+        setExamples(JSON.stringify(JSON.parse(ex.ejemplos), null, 2));
+      } catch (e) {
+        setExamples(ex.ejemplos);
+      }
+    } else {
+      setExamples(JSON.stringify(ex.ejemplos || [], null, 2));
     }
 
-    // Parsear casos_prueba
-    try {
-      const parsedTestCases = typeof ex.casos_prueba === 'string' ? JSON.parse(ex.casos_prueba) : ex.casos_prueba;
-      setTestCases(parsedTestCases && parsedTestCases.length ? parsedTestCases : [{ Entrada: '', Salida: '' }]);
-    } catch (e) {
-      setTestCases([{ Entrada: '', Salida: '' }]);
+    // Parsear casos_prueba a string JSON formateado
+    if (typeof ex.casos_prueba === 'string') {
+      try {
+        setTestCases(JSON.stringify(JSON.parse(ex.casos_prueba), null, 2));
+      } catch (e) {
+        setTestCases(ex.casos_prueba);
+      }
+    } else {
+      setTestCases(JSON.stringify(ex.casos_prueba || [], null, 2));
     }
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -284,18 +271,24 @@ export default function AdminPanel({ onBack }) {
     setSalida(ex.salida || '');
     setRequisitos(ex.requisitos || '');
 
-    try {
-      const parsedExamples = typeof ex.ejemplos === 'string' ? JSON.parse(ex.ejemplos) : ex.ejemplos;
-      setExamples(parsedExamples && parsedExamples.length ? parsedExamples : [{ Entrada: '', Salida: '' }]);
-    } catch (e) {
-      setExamples([{ Entrada: '', Salida: '' }]);
+    if (typeof ex.ejemplos === 'string') {
+      try {
+        setExamples(JSON.stringify(JSON.parse(ex.ejemplos), null, 2));
+      } catch (e) {
+        setExamples(ex.ejemplos);
+      }
+    } else {
+      setExamples(JSON.stringify(ex.ejemplos || [], null, 2));
     }
 
-    try {
-      const parsedTestCases = typeof ex.casos_prueba === 'string' ? JSON.parse(ex.casos_prueba) : ex.casos_prueba;
-      setTestCases(parsedTestCases && parsedTestCases.length ? parsedTestCases : [{ Entrada: '', Salida: '' }]);
-    } catch (e) {
-      setTestCases([{ Entrada: '', Salida: '' }]);
+    if (typeof ex.casos_prueba === 'string') {
+      try {
+        setTestCases(JSON.stringify(JSON.parse(ex.casos_prueba), null, 2));
+      } catch (e) {
+        setTestCases(ex.casos_prueba);
+      }
+    } else {
+      setTestCases(JSON.stringify(ex.casos_prueba || [], null, 2));
     }
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -330,16 +323,16 @@ export default function AdminPanel({ onBack }) {
     setEntrada('');
     setSalida('');
     setRequisitos('');
-    setExamples([{ Entrada: '', Salida: '' }]);
-    setTestCases([{ Entrada: '', Salida: '' }]);
+    setExamples('[\n  {\n    "Entrada": "",\n    "Salida": ""\n  }\n]');
+    setTestCases('[\n  {\n    "Entrada": "",\n    "Salida": ""\n  }\n]');
   };
 
   // Filtrado de ejercicios para la tabla
   const filteredExercises = exercises.filter(ex => {
-    const matchesSearch = 
+    const matchesSearch =
       (ex.titulo || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
       (ex.descripcion || '').toLowerCase().includes(searchQuery.toLowerCase());
-    
+
     const matchesTopic = filterTopic === '' || ex.topic_id?.toString() === filterTopic;
     const matchesDiff = filterDifficulty === '' || ex.dificultad === filterDifficulty;
 
@@ -398,20 +391,20 @@ export default function AdminPanel({ onBack }) {
           <div className="config-grid">
             <div className="input-group">
               <label>URL base de la API</label>
-              <input 
-                type="text" 
-                value={apiUrl} 
-                onChange={(e) => setApiUrl(e.target.value)} 
-                placeholder="http://localhost:5001" 
+              <input
+                type="text"
+                value={apiUrl}
+                onChange={(e) => setApiUrl(e.target.value)}
+                placeholder="http://localhost:5001"
               />
             </div>
             <div className="input-group">
               <label>Clave de la API (X-API-Key)</label>
-              <input 
-                type="password" 
-                value={apiKey} 
-                onChange={(e) => setApiKey(e.target.value)} 
-                placeholder="Introduce la clave API" 
+              <input
+                type="password"
+                value={apiKey}
+                onChange={(e) => setApiKey(e.target.value)}
+                placeholder="Introduce la clave API"
               />
             </div>
           </div>
@@ -432,20 +425,30 @@ export default function AdminPanel({ onBack }) {
           <div className="card-admin">
             <div className="form-header">
               <h2>{selectedId ? '✏️ Editar Ejercicio' : '✨ Crear Ejercicio'}</h2>
-              {selectedId && (
-                <button type="button" onClick={resetForm} className="btn-badge-clear">
-                  Cancelar Edición ×
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <button
+                  type="button"
+                  onClick={() => setShowImportModal(true)}
+                  className="btn-add-item"
+                  style={{ background: 'rgba(99, 102, 241, 0.15)', borderColor: 'rgba(99, 102, 241, 0.3)', color: '#a5b4fc' }}
+                >
+                  📥 Importar JSON
                 </button>
-              )}
+                {selectedId && (
+                  <button type="button" onClick={resetForm} className="btn-badge-clear">
+                    Cancelar ×
+                  </button>
+                )}
+              </div>
             </div>
 
             <form onSubmit={handleSubmitExercise} className="exercise-form">
               <div className="input-group">
                 <label>Título del Ejercicio</label>
-                <input 
-                  type="text" 
-                  value={titulo} 
-                  onChange={(e) => setTitulo(e.target.value)} 
+                <input
+                  type="text"
+                  value={titulo}
+                  onChange={(e) => setTitulo(e.target.value)}
                   placeholder="Ej: Suma de dos números"
                   required
                 />
@@ -463,17 +466,17 @@ export default function AdminPanel({ onBack }) {
 
                 <div className="input-group">
                   <label>
-                    Tópico 
-                    <button 
-                      type="button" 
-                      onClick={() => setShowTopicModal(true)} 
+                    Tópico
+                    <button
+                      type="button"
+                      onClick={() => setShowTopicModal(true)}
                       className="btn-link-action"
                     >
                       + Crear Nuevo
                     </button>
                   </label>
-                  <select 
-                    value={topicId} 
+                  <select
+                    value={topicId}
                     onChange={(e) => setTopicId(e.target.value)}
                     required
                   >
@@ -487,9 +490,9 @@ export default function AdminPanel({ onBack }) {
 
               <div className="input-group">
                 <label>Descripción / Enunciado</label>
-                <textarea 
-                  value={descripcion} 
-                  onChange={(e) => setDescripcion(e.target.value)} 
+                <textarea
+                  value={descripcion}
+                  onChange={(e) => setDescripcion(e.target.value)}
                   placeholder="Escribe el enunciado detallado del ejercicio..."
                   rows="4"
                   required
@@ -499,9 +502,9 @@ export default function AdminPanel({ onBack }) {
               <div className="form-row-3">
                 <div className="input-group">
                   <label>Formato de Entrada</label>
-                  <textarea 
-                    value={entrada} 
-                    onChange={(e) => setEntrada(e.target.value)} 
+                  <textarea
+                    value={entrada}
+                    onChange={(e) => setEntrada(e.target.value)}
                     placeholder="Ej: Un entero N en la primera línea..."
                     rows="2"
                   ></textarea>
@@ -509,9 +512,9 @@ export default function AdminPanel({ onBack }) {
 
                 <div className="input-group">
                   <label>Formato de Salida</label>
-                  <textarea 
-                    value={salida} 
-                    onChange={(e) => setSalida(e.target.value)} 
+                  <textarea
+                    value={salida}
+                    onChange={(e) => setSalida(e.target.value)}
                     placeholder="Ej: El valor de la suma..."
                     rows="2"
                   ></textarea>
@@ -519,9 +522,9 @@ export default function AdminPanel({ onBack }) {
 
                 <div className="input-group">
                   <label>Requisitos / Restricciones</label>
-                  <textarea 
-                    value={requisitos} 
-                    onChange={(e) => setRequisitos(e.target.value)} 
+                  <textarea
+                    value={requisitos}
+                    onChange={(e) => setRequisitos(e.target.value)}
                     placeholder="Ej: Tiempo límite: 1.0s&#10;Límite memoria: 64MB"
                     rows="2"
                   ></textarea>
@@ -531,91 +534,39 @@ export default function AdminPanel({ onBack }) {
               {/* Sección Ejemplos */}
               <div className="section-builder">
                 <div className="builder-header">
-                  <h3>Ejemplos para el Alumno</h3>
-                  <button type="button" onClick={addExample} className="btn-add-item">
-                    + Añadir Ejemplo
-                  </button>
+                  <h3>Ejemplos para el Alumno (JSON Array)</h3>
                 </div>
-                <p className="builder-description">Estos ejemplos se muestran directamente en el enunciado para que el estudiante comprenda el ejercicio.</p>
-                
-                <div className="builder-list">
-                  {examples.map((ex, index) => (
-                    <div key={index} className="builder-row">
-                      <div className="row-num">{index + 1}</div>
-                      <div className="textarea-wrapper">
-                        <textarea
-                          value={ex.Entrada}
-                          onChange={(e) => handleExampleChange(index, 'Entrada', e.target.value)}
-                          placeholder="Entrada del ejemplo"
-                          rows="2"
-                        />
-                      </div>
-                      <div className="textarea-wrapper">
-                        <textarea
-                          value={ex.Salida}
-                          onChange={(e) => handleExampleChange(index, 'Salida', e.target.value)}
-                          placeholder="Salida esperada"
-                          rows="2"
-                        />
-                      </div>
-                      <button 
-                        type="button" 
-                        onClick={() => removeExample(index)} 
-                        className="btn-remove-item"
-                        title="Eliminar este ejemplo"
-                      >
-                        ×
-                      </button>
-                    </div>
-                  ))}
+                <p className="builder-description">Un array JSON con objetos conteniendo "Entrada" y "Salida". Se muestra en el enunciado del problema.</p>
+                <div className="input-group">
+                  <textarea
+                    value={examples}
+                    onChange={(e) => setExamples(e.target.value)}
+                    placeholder='[\n  {\n    "Entrada": "...",\n    "Salida": "..."\n  }\n]'
+                    rows="8"
+                    style={{ fontFamily: 'monospace', fontSize: '0.85rem' }}
+                    required
+                  ></textarea>
                 </div>
               </div>
 
               {/* Sección Casos de Prueba */}
               <div className="section-builder">
                 <div className="builder-header">
-                  <h3>Casos de Prueba (Evaluador)</h3>
-                  <div className="builder-actions">
-                    <button type="button" onClick={copyExamplesToTestCases} className="btn-secondary-action">
-                      📋 Copiar desde Ejemplos
-                    </button>
-                    <button type="button" onClick={addTestCase} className="btn-add-item">
-                      + Añadir Caso
-                    </button>
-                  </div>
+                  <h3>Casos de Prueba (JSON Array)</h3>
+                  <button type="button" onClick={copyExamplesToTestCases} className="btn-secondary-action">
+                    📋 Copiar desde Ejemplos
+                  </button>
                 </div>
-                <p className="builder-description">Entradas y salidas exactas que el validador utilizará de forma oculta para juzgar el código enviado.</p>
-                
-                <div className="builder-list">
-                  {testCases.map((tc, index) => (
-                    <div key={index} className="builder-row">
-                      <div className="row-num">{index + 1}</div>
-                      <div className="textarea-wrapper">
-                        <textarea
-                          value={tc.Entrada}
-                          onChange={(e) => handleTestCaseChange(index, 'Entrada', e.target.value)}
-                          placeholder="Entrada de prueba"
-                          rows="2"
-                        />
-                      </div>
-                      <div className="textarea-wrapper">
-                        <textarea
-                          value={tc.Salida}
-                          onChange={(e) => handleTestCaseChange(index, 'Salida', e.target.value)}
-                          placeholder="Salida esperada"
-                          rows="2"
-                        />
-                      </div>
-                      <button 
-                        type="button" 
-                        onClick={() => removeTestCase(index)} 
-                        className="btn-remove-item"
-                        title="Eliminar este caso"
-                      >
-                        ×
-                      </button>
-                    </div>
-                  ))}
+                <p className="builder-description">Un array JSON con objetos conteniendo "Entrada" y "Salida" usado por el juez en segundo plano.</p>
+                <div className="input-group">
+                  <textarea
+                    value={testCases}
+                    onChange={(e) => setTestCases(e.target.value)}
+                    placeholder='[\n  {\n    "Entrada": "...",\n    "Salida": "..."\n  }\n]'
+                    rows="12"
+                    style={{ fontFamily: 'monospace', fontSize: '0.85rem' }}
+                    required
+                  ></textarea>
                 </div>
               </div>
 
@@ -637,16 +588,16 @@ export default function AdminPanel({ onBack }) {
         <section className="admin-col list-col">
           <div className="card-admin">
             <h2>📚 Ejercicios en Base de Datos</h2>
-            
+
             {/* Buscador y Filtros */}
             <div className="filters-container">
               <div className="search-box">
                 <span className="search-icon">🔍</span>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Buscar ejercicio por título o enunciado..." 
+                  placeholder="Buscar ejercicio por título o enunciado..."
                 />
               </div>
 
@@ -701,7 +652,7 @@ export default function AdminPanel({ onBack }) {
                         try {
                           const parsed = typeof ex.casos_prueba === 'string' ? JSON.parse(ex.casos_prueba) : ex.casos_prueba;
                           numCases = parsed ? parsed.length : 0;
-                        } catch (e) {}
+                        } catch (e) { }
 
                         return (
                           <tr key={ex.id} className={selectedId === ex.id ? 'row-editing' : ''}>
@@ -720,22 +671,22 @@ export default function AdminPanel({ onBack }) {
                             </td>
                             <td className="col-cases">{numCases}</td>
                             <td className="col-actions">
-                              <button 
-                                onClick={() => handleEditExercise(ex)} 
+                              <button
+                                onClick={() => handleEditExercise(ex)}
                                 className="btn-action-edit"
                                 title="Editar ejercicio"
                               >
                                 ✏️
                               </button>
-                              <button 
-                                onClick={() => handleDuplicateExercise(ex)} 
+                              <button
+                                onClick={() => handleDuplicateExercise(ex)}
                                 className="btn-action-duplicate"
                                 title="Duplicar como nuevo"
                               >
                                 📋
                               </button>
-                              <button 
-                                onClick={() => handleDeleteExercise(ex.id, ex.titulo)} 
+                              <button
+                                onClick={() => handleDeleteExercise(ex.id, ex.titulo)}
                                 className="btn-action-delete"
                                 title="Eliminar ejercicio"
                               >
@@ -750,7 +701,7 @@ export default function AdminPanel({ onBack }) {
                 </div>
               )}
             </div>
-            
+
             <div className="list-footer-stats">
               Mostrando {filteredExercises.length} de {exercises.length} ejercicios
             </div>
@@ -770,10 +721,10 @@ export default function AdminPanel({ onBack }) {
             <form onSubmit={handleCreateTopic}>
               <div className="input-group">
                 <label>Nombre del Tópico</label>
-                <input 
-                  type="text" 
-                  value={newTopicNombre} 
-                  onChange={(e) => setNewTopicNombre(e.target.value)} 
+                <input
+                  type="text"
+                  value={newTopicNombre}
+                  onChange={(e) => setNewTopicNombre(e.target.value)}
                   placeholder="Ej: Control de Flujo, Algoritmos..."
                   required
                 />
@@ -781,9 +732,9 @@ export default function AdminPanel({ onBack }) {
 
               <div className="input-group">
                 <label>Descripción</label>
-                <textarea 
-                  value={newTopicDescripcion} 
-                  onChange={(e) => setNewTopicDescripcion(e.target.value)} 
+                <textarea
+                  value={newTopicDescripcion}
+                  onChange={(e) => setNewTopicDescripcion(e.target.value)}
                   placeholder="Describe de qué trata este tópico..."
                   rows="3"
                 ></textarea>
@@ -791,8 +742,8 @@ export default function AdminPanel({ onBack }) {
 
               <div className="input-group">
                 <label>Tópico Padre (Subcategoría)</label>
-                <select 
-                  value={newTopicParentId} 
+                <select
+                  value={newTopicParentId}
                   onChange={(e) => setNewTopicParentId(e.target.value)}
                 >
                   <option value="">Ninguno (Categoría raíz)</option>
@@ -809,6 +760,68 @@ export default function AdminPanel({ onBack }) {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+      {/* Modal para Importar JSON */}
+      {showImportModal && (
+        <div className="modal-overlay">
+          <div className="modal-content card-admin" style={{ maxWidth: '600px' }}>
+            <div className="modal-header">
+              <h2>📥 Importar desde JSON</h2>
+              <button onClick={() => { setShowImportModal(false); setImportJsonText(''); }} className="btn-modal-close">×</button>
+            </div>
+
+            <div className="input-group">
+              <label>Pega el código JSON del ejercicio generado por la IA</label>
+              <textarea
+                value={importJsonText}
+                onChange={(e) => setImportJsonText(e.target.value)}
+                placeholder='{ "titulo": "...", "descripcion": "...", ... }'
+                rows="12"
+                style={{ fontFamily: 'monospace', fontSize: '0.85rem' }}
+              ></textarea>
+            </div>
+
+            <div className="modal-actions">
+              <button
+                type="button"
+                onClick={() => {
+                  try {
+                    const data = JSON.parse(importJsonText);
+                    setTitulo(data.titulo || '');
+                    setDescripcion(data.descripcion || '');
+                    setDificultad(data.dificultad || 'Principiante');
+                    setTopicId(data.topic_id ? data.topic_id.toString() : '');
+                    setEntrada(data.entrada || '');
+                    setSalida(data.salida || '');
+                    setRequisitos(data.requisitos || '');
+
+                    if (data.ejemplos && Array.isArray(data.ejemplos)) {
+                      setExamples(JSON.stringify(data.ejemplos, null, 2));
+                    }
+                    if (data.casos_prueba && Array.isArray(data.casos_prueba)) {
+                      setTestCases(JSON.stringify(data.casos_prueba, null, 2));
+                    }
+                    showToast('success', 'Datos cargados en el formulario correctamente.');
+                    setShowImportModal(false);
+                    setImportJsonText('');
+                  } catch (err) {
+                    showToast('error', 'Error al procesar el JSON: ' + err.message);
+                  }
+                }}
+                className="btn-save"
+              >
+                Cargar en Formulario
+              </button>
+              <button
+                type="button"
+                onClick={() => { setShowImportModal(false); setImportJsonText(''); }}
+                className="btn-cancel"
+              >
+                Cancelar
+              </button>
+            </div>
           </div>
         </div>
       )}

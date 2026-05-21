@@ -37,6 +37,8 @@ def get_db_connection():
 
 @app.before_request
 def check_api_key():
+    if request.method == 'OPTIONS':
+        return
     if request.path == '/health':
         return
     
