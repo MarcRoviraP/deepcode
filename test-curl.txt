@@ -1,3 +1,43 @@
+Actúa como un experto en gestión de bases de datos para plataformas de programación competitiva. Quiero extraer y adaptar la información de un problema web para insertarla directamente en mi base de datos.
 
-curl -X POST http://68.221.175.191:5001/execute -H "X-API-Key: 806bfc1ea9173997e05e9d23263556b3" -F "file=@test.lua"
-curl -X POST http://68.221.175.191:5001/execute -H "X-API-Key: 806bfc1ea9173997e05e9d23263556b3" -F "file=@test.lua" -F "input='HOLA'"
+URL del problema actual: [PEGA AQUÍ LA URL, ej: https://jo-el.es/problem/compteenrere]
+
+--- INSTRUCCIONES DE TRADUCCIÓN Y ADAPTACIÓN ---
+1. Traduce todo el contenido (Título, Descripción, Entrada, Salida) al castellano de forma natural.
+2. Identifica el "topic_id" correcto comparando la temática o categoría del problema con esta lista:
+    6 – Introducción a Programación
+    51 – Operadores aritméticos
+    45 – Strings
+    43 – Arrays / Listas
+    44 – Bucles
+    50 – Bucles avanzados
+    52 – Funciones
+    53 – Gestión de errores
+    46 – Diccionarios
+    47 – Listas dinámicas
+    48 – Matrices
+    49 – Recursividad
+    2 – Estructuras de Datos
+    4 – Programación Orientada a Objetos
+3. Traduce la dificultad original a una de estas: Principiante, Intermedio, Avanzado.
+
+--- FORMATO ESTRICTO DE SALIDA ---
+Devuelve la información estructurada simulando las columnas de una fila de mi base de datos:
+- ID / Topic_id: (Solo el número)
+- Título: (Traducido)
+- Descripción: (Traducida)
+- Dificultad: (Traducida)
+- Id_Asociado: (Mismo número que el topic_id)
+- Entrada: (Explicación de la entrada traducida)
+- Salida: (Explicación de la salida traducida)
+- Límites: (Tiempo y memoria juntos)
+
+--- REGLAS CRÍTICAS PARA LOS JSON (EJEMPLO Y CASOS DE PRUEBA) ---
+Genera dos bloques JSON independientes: uno para "Ejemplo" (solo 1 caso, el de la web) y otro para "Casos de Prueba" (genera exactamente 8 casos variados basados en el enunciado).
+
+IMPORTANTE: 
+- Respeta la estructura exacta de claves: "Entrada" y "Salida".
+- Si en la entrada o en la salida del problema hay saltos de línea (una salida que va número a número por fila, o un array que se lee en varias líneas), debes usar OBLIGATORIAMENTE el carácter "\n" dentro del string del JSON. No generes saltos de línea reales dentro del string.
+
+Ejemplo de formato esperado para los strings con salto de línea:
+"Salida": "10\n9\n8\n7\n6\n5\n4\n3\n2\n1\n0"

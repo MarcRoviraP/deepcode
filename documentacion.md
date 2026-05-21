@@ -31,6 +31,8 @@ La API escucha en el puerto **5001**. Todos los endpoints aceptan `GET`, `POST`,
 | `/documents` | Fuentes PDF para el sistema RAG | `topic_id`, `title`, `file_path`, `level` |
 | `/knowledge_chunks` | Fragmentos vectorizados para búsqueda | `document_id`, `content`, `embedding` |
 | `/user_ejer/stats` | Conteo de ejercicios únicos por usuario | N/A (Solo lectura) |
+| `/ejercicios/stats` | Conteo de ejercicios por tópico | N/A (Solo lectura) |
+| `/topics/stats` | Cantidad de ejercicios por tópico (solo tópicos con ejercicios) | N/A (Solo lectura) |
 | `/execute` | Ejecución segura de código | (Multipart) `file`, `input` |
 
 ---
@@ -200,5 +202,33 @@ curl -H "X-API-Key: <API_KEY>" http://<SERVER_IP>:5001/user_ejer/stats
 curl -H "X-API-Key: <API_KEY>" "http://<SERVER_IP>:5001/user_ejer/stats?user_id=eq.5"
 ```
 
+### Estadísticas de Ejercicios por Tópico (`/ejercicios/stats`)
+Obtiene el conteo total de ejercicios por cada tópico. Soporta filtrado por un tópico específico.
+
+- **Método:** `GET`
+- **URL:** `/ejercicios/stats`
+- **Parámetros Opcionales:** `topic_id=eq.ID`
+
+**Ejemplos CURL:**
+```bash
+# Todos los tópicos
+curl -H "X-API-Key: <API_KEY>" http://<SERVER_IP>:5001/ejercicios/stats
+
+# Solo el tópico 6
+curl -H "X-API-Key: <API_KEY>" "http://<SERVER_IP>:5001/ejercicios/stats?topic_id=eq.6"
+```
+
+### Ejercicios por Nombre de Tópico (`/topics/stats`)
+Obtiene la cantidad de ejercicios agrupados por el nombre de cada tópico que contenga ejercicios.
+
+- **Método:** `GET`
+- **URL:** `/topics/stats`
+
+**Ejemplo CURL:**
+```bash
+curl -H "X-API-Key: <API_KEY>" http://<SERVER_IP>:5001/topics/stats
+```
+
 ---
 **Nota:** Si la conexión falla desde fuera (DBeaver o API), asegúrate de haber abierto los puertos **5432** y **5001** en el panel de Azure (Network Security Group).
+

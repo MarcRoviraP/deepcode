@@ -161,7 +161,7 @@ tables_config = [
     ("usuarios", ["nombre", "email", "password_hash", "nivel","picture","google_id"]),
     ("topics", ["nombre", "descripcion", "parent_id"]),
     ("progreso_usuario", ["usuario_id", "topic_id", "nivel", "score"]),
-    ("ejercicios", ["titulo", "descripcion", "dificultad", "topic_id","entrada","salida","requisitos","ejemplos"]),
+    ("ejercicios", ["titulo", "descripcion", "dificultad", "topic_id","entrada","salida","requisitos","ejemplos","casos_prueba"]),
     ("casos_prueba", ["ejercicio_id", "input", "output_esperado"]),
     ("conversaciones", ["usuario_id","nombre"]),
     ("chat", ["usuario_id", "conversacion_id", "mensaje", "respuesta"]),
@@ -196,6 +196,43 @@ def get_user_ejer_stats():
     
     try:
         data = query_db(query, tuple(params))
+        return jsonify(data), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+# Endpoint para obtener el conteo de ejercicios por topic
+@app.route('/ejercicios/stats', methods=['GET'])
+def get_ejercicios_stats():
+    topic_id = request.args.get('topic_id')
+    if topic_id and topic_id.startswith('eq.'):
+        topic_id = topic_id[3:]
+
+    query = "SELECT topic_id, COUNT(*) as cantidad_ejercicios FROM ejercicios"
+    params = []
+    
+    if topic_id:
+        query += " WHERE topic_id = %s"
+        params.append(topic_id)
+        
+    query += " GROUP BY topic_id ORDER BY topic_id ASC;"
+    
+    try:
+        data = query_db(query, tuple(params))
+        return jsonify(data), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+# Endpoint para obtener el número de ejercicios por tópico que tenga ejercicios
+@app.route('/topics/stats', methods=['GET'])
+def get_topics_stats():
+    query = """
+        SELECT COUNT(t.*) as num_ejercicios, t.id
+        FROM topics t
+        RIGHT JOIN ejercicios e on t.id = e.topic_id
+        GROUP BY t.id
+    """
+    try:
+        data = query_db(query)
         return jsonify(data), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -324,6 +361,10 @@ def execute_code():
             input_list = request.form.getlist('input')
             if len(input_list) > 1:
                 input_data = "\n".join(input_list) + "\n"
+            
+            # Sanitizar el input eliminando los retornos de carro (\r)
+            if input_data:
+                input_data = input_data.replace('\r', '')
             
             # Ejecutar con un timeout de seguridad y en un SANDBOX
             # Usamos sudo -u sandbox_user para aislar la ejecución

@@ -640,3 +640,75 @@ tree | grep *js
 tree | grep ".sh"
 tree | grep "\.sh"
 tree | grep "\.ipynb"
+git config --global user.name "MarcRoviraP"
+git config --global user.email "marcrovira2eso1@gmail.com"
+systemctl status api-postgres.service 
+systemctl restart api-postgres.service 
+systemctl status api-postgres.service 
+systemctl status  piper-tts.service 
+systemctl status api-postgres.service 
+ls -F /home/deepcode/DeepTutor/server
+cd /home/deepcode/server
+ls -F /home/deepcode/server
+cd /home/deepcode
+find /home/deepcode -name "*.py" -not -path "*/venv/*" -not -path "*/node_modules/*"
+cd /home/deepcode/piper
+ls -R /home/deepcode/piper | grep ".py"
+ls -R /home/deepcode
+ls -la /home/deepcode
+cd /home/deepcode/piper
+ls -F /home/deepcode/piper
+cd /home/deepcode/DeepTutor
+ls -F /home/deepcode/DeepTutor
+cd /home/deepcode
+du -sh /home/deepcode/*
+ls -d .git
+cd /home/deepcode/srv
+ls -F /home/deepcode/srv
+cd /home/deepcode
+pg_dump -s app_db > /home/deepcode/sql/schema.sql
+/home/deepcode/venv/bin/pip freeze
+git init && git add . && git commit -m "Initial commit: DeepTutor Server Blueprint"
+git status
+git add .gitignore .env.example README.md app.py documentacion.md requirements.txt sql/ DeepTutor/ server/ srv/ piper/src/ && git commit -m "Initial commit: DeepTutor Server Infrastructure"
+ls -d DeepTutor/.git server/DeepTutor/.git
+du -sh DeepTutor server/DeepTutor
+git rm --cached DeepTutor server/DeepTutor && rm -rf DeepTutor/.git server/DeepTutor/.git && git add DeepTutor server/DeepTutor && git commit -m "Flattened submodules into a single monorepo for easier replication"
+journalctl -u api-postgres.service -n 50 --no-pager
+/home/deepcode/venv/bin/pip install python-dotenv
+sudo systemctl restart api-postgres.service
+systemctl status api-postgres.service
+systemctl status piper-tts.service
+/home/deepcode/piper/.venv/bin/pip install python-dotenv && sudo systemctl restart piper-tts.service
+systemctl status api-postgres.service piper-tts.service --no-pager
+git add . && git commit -m "Fixed missing dependency and refactored Piper API"
+curl -H "X-API-Key: 806bfc1ea9173997e05e9d23263556b3" "http://localhost:5001/ejercicios/stats?topic_id=eq.6"
+python3 -c "import psycopg2, os; from dotenv import load_dotenv; load_dotenv(); conn = psycopg2.connect(host=os.getenv('DB_HOST', 'localhost'), database=os.getenv('DB_NAME', 'app_db'), user=os.getenv('DB_USER', 'postgresql'), password=os.getenv('DB_PASS', '123456'), port=int(os.getenv('DB_PORT', 5432))); cur=conn.cursor(); cur.execute('SELECT COUNT(*) FROM ejercicios;'); print('Ejercicios:', cur.fetchone()[0]); cur.execute('SELECT topic_id, count(*) FROM ejercicios GROUP BY topic_id;'); print('Grouped:', cur.fetchall()); cur.close(); conn.close()"
+/home/deepcode/srv/.venv/bin/python -c "import psycopg2, os; from dotenv import load_dotenv; load_dotenv(); conn = psycopg2.connect(host=os.getenv('DB_HOST', 'localhost'), database=os.getenv('DB_NAME', 'app_db'), user=os.getenv('DB_USER', 'postgresql'), password=os.getenv('DB_PASS', '123456'), port=int(os.getenv('DB_PORT', 5432))); cur=conn.cursor(); cur.execute('SELECT COUNT(*) FROM ejercicios;'); print('Ejercicios:', cur.fetchone()[0]); cur.execute('SELECT topic_id, count(*) FROM ejercicios GROUP BY topic_id;'); print('Grouped:', cur.fetchall()); cur.close(); conn.close()"
+/home/deepcode/venv/bin/python -c "import psycopg2, os; from dotenv import load_dotenv; load_dotenv(); conn = psycopg2.connect(host=os.getenv('DB_HOST', 'localhost'), database=os.getenv('DB_NAME', 'app_db'), user=os.getenv('DB_USER', 'postgresql'), password=os.getenv('DB_PASS', '123456'), port=int(os.getenv('DB_PORT', 5432))); cur=conn.cursor(); cur.execute('SELECT COUNT(*) FROM ejercicios;'); print('Ejercicios:', cur.fetchone()[0]); cur.execute('SELECT topic_id, count(*) FROM ejercicios GROUP BY topic_id;'); print('Grouped:', cur.fetchall()); cur.close(); conn.close()"
+ps aux | grep python
+curl -i http://localhost:5001/health
+curl -i -H "X-API-Key: 806bfc1ea9173997e05e9d23263556b3" http://localhost:5001/ejercicios/stats
+curl -i -H "X-API-Key: 806bfc1ea9173997e05e9d23263556b3" "http://localhost:5001/ejercicios/stats?topic_id=eq.6"
+curl -i -H "X-API-Key: 806bfc1ea9173997e05e9d23263556b3" "http://localhost:5001/ejercicios/stats?topic_id=eq.99"
+curl -i http://localhost:5001/ejercicios/stats
+python
+python3
+ll
+python3 test.py 
+python
+python3
+python3 --version
+python3 -c "import psycopg2; conn=psycopg2.connect('host=localhost dbname=app_db user=postgresql password=123456 port=5432'); cur=conn.cursor(); cur.execute('SELECT COUNT(t.*) as num_ejercicios, t.nombre FROM topics t RIGHT JOIN ejercicios e on t.id = e.topic_id GROUP BY t.nombre'); print(cur.fetchall())"
+venv/bin/python3 -c "import psycopg2; conn=psycopg2.connect('host=localhost dbname=app_db user=postgresql password=123456 port=5432'); cur=conn.cursor(); cur.execute('SELECT COUNT(t.*) as num_ejercicios, t.nombre FROM topics t RIGHT JOIN ejercicios e on t.id = e.topic_id GROUP BY t.nombre'); print(cur.fetchall())"
+git log -n 5
+ps aux | grep app.py
+curl -i -H "X-API-Key: 806bfc1ea9173997e05e9d23263556b3" http://localhost:5001/topics/stats
+python3 -c "print(0.28 * 100)"
+node -e "console.log(0.28 * 100)"
+lua5.4 -e "print(0.28 * 100)" || lua -e "print(0.28 * 100)"
+ps aux | grep python
+/home/deepcode/venv/bin/python /home/deepcode/scratch/test_execute_api.py
+curl -X POST -H "X-API-Key: 806bfc1ea9173997e05e9d23263556b3" -F "file=@/home/deepcode/test.py" -F "input=$'1\r\n\r\n2 3 2\r\n2\r\n'" http://localhost:5001/execute
+/home/deepcode/venv/bin/python /home/deepcode/scratch/test_execute_api.py
+/home/deepcode/venv/bin/python /home/deepcode/scratch/test_execute_api.py

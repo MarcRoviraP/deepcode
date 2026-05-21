@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react'
 import { GoogleLogin } from '@react-oauth/google'
 import axios from 'axios'
 import './App.css'
+import AdminPanel from './AdminPanel'
 
 function App() {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [isAdminMode, setIsAdminMode] = useState(false)
 
   useEffect(() => {
     // Check if user is already logged in
@@ -42,6 +44,10 @@ function App() {
     setUser(null)
   }
 
+  if (isAdminMode) {
+    return <AdminPanel onBack={() => setIsAdminMode(false)} />;
+  }
+
   return (
     <div className="container">
       <div className="card">
@@ -54,11 +60,18 @@ function App() {
             {loading ? (
               <div className="loader"></div>
             ) : (
-              <GoogleLogin
-                onSuccess={handleLoginSuccess}
-                onError={() => console.log('Login Failed')}
-                useOneTap
-              />
+              <>
+                <GoogleLogin
+                  onSuccess={handleLoginSuccess}
+                  onError={() => console.log('Login Failed')}
+                  useOneTap
+                />
+                <div className="admin-shortcut">
+                  <button onClick={() => setIsAdminMode(true)} className="admin-link-btn">
+                    ⚙️ Panel de Administración
+                  </button>
+                </div>
+              </>
             )}
           </div>
         ) : (
@@ -66,9 +79,14 @@ function App() {
             <img src={user.picture} alt={user.name} className="avatar" />
             <h2>Welcome, {user.name}!</h2>
             <p>{user.email}</p>
-            <button onClick={handleLogout} className="logout-btn">
-              Sign Out
-            </button>
+            <div className="profile-actions">
+              <button onClick={() => setIsAdminMode(true)} className="admin-btn">
+                ⚙️ Ir al Panel de Admin
+              </button>
+              <button onClick={handleLogout} className="logout-btn">
+                Sign Out
+              </button>
+            </div>
           </div>
         )}
       </div>
