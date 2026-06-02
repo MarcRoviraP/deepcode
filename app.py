@@ -107,6 +107,8 @@ def create_endpoints(table_name, post_columns):
         for val in values:
             if isinstance(val, (dict, list)):
                 processed_values.append(json.dumps(val))
+            elif isinstance(val, str):
+                processed_values.append(val.replace('\r\n', '\n').replace('\r', '\n'))
             else:
                 processed_values.append(val)
 
@@ -135,6 +137,8 @@ def create_endpoints(table_name, post_columns):
                 val = data.get(col)
                 if isinstance(val, (dict, list)):
                     values.append(json.dumps(val))
+                elif isinstance(val, str):
+                    values.append(val.replace('\r\n', '\n').replace('\r', '\n'))
                 else:
                     values.append(val)
         
@@ -370,7 +374,7 @@ def execute_code():
             
             # Ejecutar con un timeout de seguridad y en un SANDBOX
             # Usamos sudo -u sandbox_user para aislar la ejecución
-            sandbox_cmd = ['sudo', '-n', '-u', 'sandbox_user'] + cmd
+            sandbox_cmd = ['sudo', '-n', 'unshare', '--net', '--pid', '--fork', '--ipc', '--mount-proc', 'runuser', '-u', 'sandbox_user', '--'] + cmd
             result = subprocess.run(sandbox_cmd, input=input_data, capture_output=True, text=True, timeout=10)
             
             return jsonify({

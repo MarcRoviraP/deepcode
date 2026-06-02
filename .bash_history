@@ -712,3 +712,720 @@ ps aux | grep python
 curl -X POST -H "X-API-Key: 806bfc1ea9173997e05e9d23263556b3" -F "file=@/home/deepcode/test.py" -F "input=$'1\r\n\r\n2 3 2\r\n2\r\n'" http://localhost:5001/execute
 /home/deepcode/venv/bin/python /home/deepcode/scratch/test_execute_api.py
 /home/deepcode/venv/bin/python /home/deepcode/scratch/test_execute_api.py
+cd DeepTutor/
+npm run build
+cd client/
+npm run build
+npm run deb
+npm run dev
+npm run dev --host
+npm run dev --host 5173
+npm run dev
+pg_lsclusters
+sudo tail -n 50 /var/log/postgresql/postgresql-16-main.log
+sudo systemctl status api-postgres
+sudo ufw allow 5173
+ps aux | grep postgres
+sudo kill -9 24181
+sudo systemctl status postgresql@16-main
+journalctl -u api-postgres -n 30
+curl -X OPTIONS -H "Origin: http://localhost:5173" -H "Access-Control-Request-Method: GET" -H "Access-Control-Request-Headers: X-API-Key" -I http://localhost:5001/ejercicios
+python3 -c "import psycopg2, os; conn = psycopg2.connect(host=os.getenv('DB_HOST', 'localhost'), database=os.getenv('DB_NAME', 'app_db'), user=os.getenv('DB_USER', 'postgresql'), password=os.getenv('DB_PASS', '123456'), port=int(os.getenv('DB_PORT', 5432))); cur = conn.cursor(); cur.execute('SELECT id, nombre FROM topics ORDER BY id;'); [print(f'{r[0]} – {r[1]}') for r in cur.fetchall()]; cur.close(); conn.close()"
+/home/deepcode/venv/bin/python -c "import psycopg2, os; conn = psycopg2.connect(host=os.getenv('DB_HOST', 'localhost'), database=os.getenv('DB_NAME', 'app_db'), user=os.getenv('DB_USER', 'postgresql'), password=os.getenv('DB_PASS', '123456'), port=int(os.getenv('DB_PORT', 5432))); cur = conn.cursor(); cur.execute('SELECT id, nombre FROM topics ORDER BY id;'); [print(f'{r[0]} – {r[1]}') for r in cur.fetchall()]; cur.close(); conn.close()"
+curl -i -X OPTIONS http://localhost:5001/ejercicios
+curl -i -H "X-API-Key: 806bfc1ea9173997e05e9d23263556b3" http://localhost:5001/ejercicios
+sudo systemctl status postgresql
+ps aux | grep postgres
+pstree -ap postgres
+sudo ls -l /proc/2766/exe /proc/2679/exe /proc/25978/exe
+sudo rm -rf /tmp/init /tmp/mysql && sudo kill -9 2679 2766 25978 && sudo crontab -u postgres -l
+ps aux | grep postgres
+python3 -c "import psycopg2; conn = psycopg2.connect('host=localhost dbname=app_db user=postgresql password=123456 port=5432'); cur = conn.cursor(); cur.execute('SELECT * FROM ejercicios LIMIT 1;'); row = cur.fetchone(); print('Columns:', [desc[0] for desc in cur.description]); print('Row:', row)"
+venv/bin/python -c "import psycopg2; conn = psycopg2.connect('host=localhost dbname=app_db user=postgresql password=123456 port=5432'); cur = conn.cursor(); cur.execute('SELECT * FROM ejercicios LIMIT 1;'); row = cur.fetchone(); print('Columns:', [desc[0] for desc in cur.description]); print('Row:', row)"
+venv/bin/python -c "import psycopg2; conn = psycopg2.connect('host=localhost dbname=app_db user=postgresql password=123456 port=5432'); cur = conn.cursor(); cur.execute('SELECT * FROM casos_prueba LIMIT 5;'); rows = cur.fetchall(); print('Rows in casos_prueba table:', len(rows)); [print(row) for row in rows]"
+venv/bin/python -c "import psycopg2; conn = psycopg2.connect('host=localhost dbname=app_db user=postgresql password=123456 port=5432'); cur = conn.cursor(); cur.execute('SELECT COUNT(*), COUNT(casos_prueba) FROM ejercicios;'); print(cur.fetchone())"
+ps aux | grep python
+curl -s -H "X-API-Key: 806bfc1ea9173997e05e9d23263556b3" http://localhost:5001/health
+venv/bin/python -c "import psycopg2; conn = psycopg2.connect('host=localhost dbname=app_db user=postgresql password=123456 port=5432'); cur = conn.cursor(); cur.execute('SELECT id, nombre FROM topics LIMIT 10;'); [print(row) for row in cur.fetchall()]"
+ps aux | grep node
+pm2 list
+ss -lnt
+curl -I http://localhost
+ls -la /etc/apache2/sites-enabled/
+cat /etc/apache2/sites-available/000-default.conf
+ls -la /var/www/html
+ls -la /etc/systemd/system | grep -i tutor
+ls -la /etc/systemd/system
+cat /etc/systemd/system/api-postgres.service
+head -n 50 /var/www/html/index.html
+sudo systemctl restart api-postgres
+curl -X OPTIONS -H "Origin: http://localhost:5173" -H "Access-Control-Request-Method: GET" -H "Access-Control-Request-Headers: X-API-Key" -I http://localhost:5001/ejercicios
+sudo systemctl status api-postgres
+sudo systemctl status postgresql@16-main
+pg_lsclusters
+sudo pg_ctlcluster 16 main start
+pg_lsclusters
+curl -i -H "X-API-Key: 806bfc1ea9173997e05e9d23263556b3" http://localhost:5001/ejercicios
+PGPASSWORD=123456 psql -h localhost -U postgresql -d app_db -c "\d ejercicios"
+sudo systemctl restart api-postgres
+cd DeepTutor/
+cd client/
+npm run dev
+cd client/
+cd DeepTutor/
+cd client/
+npm run dev
+ll
+npm run dev
+cd web
+mkdir web
+cd web
+git clone https://github.com/MarcRoviraP/deeptutor
+pnpm install
+sudo apt install pnpm
+npm --version
+sudo apt install pnpm
+sudo apt --fix-broken install
+sudo dpkg --configure -a
+sudo apt install pnpm
+npm install -g pnpm
+pnpm install
+cd deeptutor/
+pnpm install
+pnpm run dev
+ip a
+cd /home/deepcode/web/deeptutor
+pnpm approve-builds
+git diff package.json
+git diff
+pnpm install
+pnpm run dev
+lsof -i :5173 || true; lsof -i :5002 || true
+pnpm run dev
+lsof -i :5000
+ps aux | grep gunicorn
+ls -la /home/deepcode/web/deeptutor
+systemctl list-units --type=service | grep -E -i "gunicorn|piper|tutor|app"
+systemctl cat piper-tts.service
+find . -maxdepth 3 -name ".env*"
+lsof -i :5001
+ps aux | grep 5001
+ps aux | grep python
+env | grep -E "GEMINI|GROQ"
+pnpm run dev
+lsof -i :5173
+ps aux | grep -E "node|vite"
+pnpm run dev
+pnpm run build
+pnpm run build:client
+pnpm run start
+cd ~
+sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https
+curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
+sudo apt update
+sudo apt install caddy
+caddy --versiob
+caddy --version
+cd  web
+cd  deeptutor/
+ll
+pwd
+sudo nano /etc/caddy/Caddyfile
+sudo systemctl restart caddy
+sudo systemctl status caddy
+sudo systemctl stop apache2.service 
+sudo systemctl disabled apache2.service 
+sudo systemctl disable apache2.service 
+sudo systemctl restart caddy
+sudo systemctl status caddy
+sudo nano /etc/caddy/Caddyfile
+sudo systemctl restart caddy
+sudo systemctl status caddy
+pnpm run start
+ss -tulpn | grep 5173
+ss -tulpn | grep 5002
+pnpm run start
+pnpm install
+pnpm build
+pnpm start
+pnpm build:client
+pnpm start
+curl ifconfig.me
+ping deeptutor.duckdns.org
+ping http://deeptutor.duckdns.org
+curl http://localhost:3000
+curl http://localhost:5002
+curl http://localhost:5173
+sudo ss -tulpn | grep 5002
+sudo systemctl status caddy
+sudo cat /etc/caddy/Caddyfile
+sudo caddy validate --config /etc/caddy/Caddyfile
+sudo systemctl restart caddy
+journalctl -u caddy --no-pager | tail -50
+sudo cat /etc/caddy/Caddyfile
+sudo nano /etc/caddy/Caddyfile
+sudo systemctl restart caddy
+sudo systemctl restart caddy
+sudo systemctl status caddy
+sudo systemctl status caddy
+curl -I http://localhost:5173/dashboard/src/ui.js
+curl -I http://localhost:5002/dashboard/src/ui.js
+pnpm --filter deep-tutor-web add -D tailwindcss @tailwindcss/postcss postcss
+pnpm --filter deep-tutor-web add -D @tailwindcss/vite
+curl -s http://localhost:5173/dashboard/style.css | head -n 30
+ps aux | grep node
+sudo -n ss -tulpn
+journalctl -u caddy -n 50 --no-pager
+kill 62294
+ps aux | grep node
+kill -9 62313 59729 62418 62430 59873
+curl -i -N -H "Connection: Upgrade" -H "Upgrade: websocket" -H "Host: deeptutor.duckdns.org" -H "Origin: https://deeptutor.duckdns.org" -H "Sec-WebSocket-Key: SGVsbG8sIHdvcmxkIQ==" -H "Sec-WebSocket-Version: 13" http://127.0.0.1:5002/dashboard/
+journalctl -u caddy -n 20 --no-pager
+curl -i -N -H "Connection: Upgrade" -H "Upgrade: websocket" -H "Host: deeptutor.duckdns.org" -H "Origin: https://deeptutor.duckdns.org" -H "Sec-WebSocket-Key: SGVsbG8sIHdvcmxkIQ==" -H "Sec-WebSocket-Version: 13" https://deeptutor.duckdns.org/dashboard/
+curl --http1.1 -i -N -H "Connection: Upgrade" -H "Upgrade: websocket" -H "Host: deeptutor.duckdns.org" -H "Origin: https://deeptutor.duckdns.org" -H "Sec-WebSocket-Key: SGVsbG8sIHdvcmxkIQ==" -H "Sec-WebSocket-Version: 13" https://deeptutor.duckdns.org/dashboard/
+sudo systemctl status caddy
+sudo ss -tulpn | grep :80
+curl -I http://127.0.0.1
+sudo -n lsof -i :80
+ps aux | grep caddy
+sudo -n ss -tulpn
+sudo systemctl status caddy
+sudo journalctl -u caddy --no-pager | tail -25
+ps aux | grep node
+sudo -n ss -tulpn
+curl -I http://localhost:5002
+curl -I http://localhost:5002/dashboard/
+curl -I -H "Host: deeptutor.duckdns.org" http://localhost:5002/dashboard/
+pnpm run dev
+pnpm run dev
+sudo -n ss -tulpn | grep -E '5173|5002'
+pnpm run dev
+curl --http2 -i -N -H "Connection: Upgrade" -H "Upgrade: websocket" -H "Host: deeptutor.duckdns.org" -H "Origin: https://deeptutor.duckdns.org" -H "Sec-WebSocket-Key: SGVsbG8sIHdvcmxkIQ==" -H "Sec-WebSocket-Version: 13" https://deeptutor.duckdns.org/dashboard/
+ls -l /etc/caddy/Caddyfile
+sudo cp /home/deepcode/web/deeptutor/Caddyfile.tmp /etc/caddy/Caddyfile && sudo systemctl reload caddy
+rm Caddyfile.tmp
+journalctl -u caddy -n 20 --no-pager
+journalctl -u caddy -n 30 --no-pager
+pnpm run dev
+pnpm install -D tailwindcss @tailwindcss/postcss postcss
+npm install -D tailwindcss @tailwindcss/postcss postcss
+pnpm run dev
+sudo ss -tulpn | grep 5002
+kill -9 49239
+pnpm run dev
+kill -9 49239
+sudo ss -tulpn | grep 5002
+sudo ss -tulpn | grep 5173
+kill -9 48666
+pnpm run dev
+sudo ss -tulpn | grep 5173
+sudo ss -tulpn | grep 5002
+kill -9 56383
+pnpm run dev
+pnpm run build:client
+pnpm run dev
+sudo ss -tulpn | grep 5002
+kill -9 59885
+sudo ss -tulpn | grep 5173
+kill -9 59866
+sudo ss -tulpn | grep 5173
+pnpm run dev
+sudo ss -tulpn | grep 5173
+pnpm run dev
+vite
+pnpm run dev
+sudo ss -tulpn | grep 5173
+sudo ss -tulpn | awk '/:5173/ {match($0, /pid=([0-9]+)/, a); print a[1]}' | xargs -r sudo kill -9
+sudo ss -tulpn | awk '/:5002/ {match($0, /pid=([0-9]+)/, a); print a[1]}' | xargs -r sudo kill -9
+pnpm run dev
+pnpm run build:client
+pnpm run dev
+pnpm run start
+pnpm --filter deep-tutor-web build
+pnpm run start
+cd web/deeptutor/
+pnpm run start
+sudo systemctl status deeptutor.service --no-pager
+sudo systemctl status deeptutor.service
+sudo systemctl status deeptutor.service --no-pager
+sudo systemctl restart deeptutor.service
+sudo systemctl status 
+sudo systemctl status deeptutor.service 
+sudo tee /etc/systemd/system/deeptutor.service > /dev/null <<'EOF'
+[Unit]
+
+Description=DeepTutor Frontend Service
+
+After=network.target
+
+
+
+[Service]
+
+Type=simple
+
+User=deepcode
+
+WorkingDirectory=/home/deepcode/web/deeptutor
+
+ExecStart=/usr/bin/pnpm run start
+
+Restart=always
+
+RestartSec=5
+
+
+
+[Install]
+
+WantedBy=multi-user.target
+
+EOF
+
+sudo systemctl daemon-reload
+sudo systemctl enable --now deeptutor.service
+sudo systemctl status deeptutor.service --no-pager
+sudo tee /etc/systemd/system/deeptutor.service > /dev/null <<'EOF'
+[Unit]
+
+Description=DeepTutor Frontend Service
+
+After=network.target
+
+
+
+[Service]
+
+Type=simple
+
+User=deepcode
+
+WorkingDirectory=/home/deepcode/web/deeptutor
+
+ExecStart=/usr/bin/env bash -c 'pnpm run start'
+
+Restart=always
+
+RestartSec=5
+
+
+
+[Install]
+
+WantedBy=multi-user.target
+
+EOF
+
+sudo systemctl daemon-reload
+sudo systemctl restart deeptutor.service
+which pnpm
+sudo systemctl status deeptutor.service --no-pager
+sudo tee /etc/systemd/system/deeptutor.service > /dev/null <<'EOF'
+[Unit]
+
+Description=DeepTutor Frontend Service
+
+After=network.target
+
+
+
+[Service]
+
+Type=simple
+
+User=deepcode
+
+WorkingDirectory=/home/deepcode/web/deeptutor
+
+ExecStart=/usr/bin/env bash -c "pnpm run start"
+
+Restart=always
+
+RestartSec=5
+
+
+
+[Install]
+
+WantedBy=multi-user.target
+
+EOF
+
+sudo systemctl daemon-reload
+sudo tee /etc/systemd/system/deeptutor.service > /dev/null <<'EOF'
+[Unit]
+
+Description=DeepTutor Frontend Service
+
+After=network.target
+
+
+
+[Service]
+
+Type=simple
+
+User=deepcode
+
+WorkingDirectory=/home/deepcode/web/deeptutor
+
+ExecStart=/home/deepcode/.nvm/versions/node/v24.15.0/bin/pnpm run start
+
+Restart=always
+
+RestartSec=5
+
+
+
+[Install]
+
+WantedBy=multi-user.target
+
+EOF
+
+sudo systemctl daemon-reload
+sudo systemctl restart deeptutor.service
+sudo systemctl status deeptutor.service --no-pager
+sudo tee /etc/systemd/system/deeptutor.service > /dev/null <<'EOF'
+[Unit]
+
+Description=DeepTutor Frontend Service
+
+After=network.target
+
+
+
+[Service]
+
+Type=simple
+
+User=deepcode
+
+WorkingDirectory=/home/deepcode/web/deeptutor
+
+ExecStart=/bin/bash -lc 'pnpm run start'
+
+Restart=always
+
+RestartSec=5
+
+
+
+[Install]
+
+WantedBy=multi-user.target
+
+EOF
+
+sudo systemctl daemon-reload
+sudo systemctl restart deeptutor.service
+sudo systemctl status deeptutor.service --no-pager
+cls
+clear
+systemctl status deeptutor.service 
+nano /etc/systemd/system
+nano /etc/systemd/system/deeptutor.service 
+ls
+ls scripts/
+ls web/
+ls web/deeptutor/
+nano .bashrc
+clear
+sudo systemctl status deeptutor.service 
+ls scripts/
+sudo su -
+ll
+sudo nano /etc/systemd/system/deeptutor.service 
+systemctl status deeptutor.service 
+clear
+nano scripts/deeptutor_run.sh 
+which bash
+clear
+ls
+nano /etc/systemd/system/deeptutor.service 
+systemctl status deeptutor.service 
+nano /etc/systemd/system/deeptutor.service 
+sudo nano /etc/systemd/system/deeptutor.service 
+systemctl restart deeptutor.service 
+systemctl status deeptutor.service 
+systemctl restart deeptutor.service 
+systemctl status deeptutor.service 
+sudo nano /etc/systemd/system/deeptutor.service 
+systemctl status deeptutor.service 
+systemctl daemon-reload 
+systemctl status deeptutor.service 
+nano ~/scripts/deeptutor_run.sh
+mkdir -p ~/scripts
+nano ~/scripts/deeptutor_run.sh
+chmod +x ~/scripts/deeptutor_run.sh
+nano ~/scripts/deeptutor_run.sh
+sudo nano /etc/systemd/system/deeptutor.service 
+pwd ~/scripts/deeptutor_run.sh
+sudo nano /etc/systemd/system/deeptutor.service 
+systemctl daemon-reload 
+systemctl restart deeptutor.service 
+systemctl status deeptutor.service 
+/bin/bash /home/deepcode/scripts/deeptutor_run.sh
+su -
+sudo root
+su root
+sudo su
+whereis pnpm
+sudo nano /etc/systemd/system/deeptutor.service 
+nano ~/scripts/deeptutor_run.sh 
+systemctl daemon-reload 
+systemctl status deeptutor.service 
+systemctl restart deeptutor.service 
+systemctl status deeptutor.service 
+sudo su
+whereis pnpm
+sudo nano /etc/systemd/system/deeptutor.service 
+systemctl restart deeptutor.service 
+systemctl daemon-reload 
+systemctl status deeptutor.service 
+systemctl status deeptutor.service  --verbose
+cd /
+/bin/bash /home/deepcode/scripts/deeptutor_run.sh
+systemctl status deeptutor.service 
+systemctl stop deeptutor.service 
+systemctl start deeptutor.service 
+systemctl status deeptutor.service 
+cp /home/deepcode/ico.svg /home/deepcode/web/deeptutor/client/public/favicon.svg
+systemctl restart deeptutor.service 
+
+systemctl restart deeptutor.service 
+rm /home/deepcode/ico.png 
+cp -f /home/deepcode/ico.png /home/deepcode/web/deeptutor/client/public/favicon.png
+sudo su
+cd /home/deepcode/web/
+pnpm build:client
+cd deeptutor/
+pnpm build:client
+sudo su
+pnpm --filter deep-tutor-web build
+sudo su
+journalctl -u deeptutor.service -n 50 --no-pager
+cat /etc/systemd/system/deeptutor.service
+/home/deepcode/.nvm/versions/node/v24.15.0/bin/node -v
+systemctl restart deeptutor.service
+systemctl status deeptutor.service
+find . -maxdepth 3 -name "*.html" -not -path "*/node_modules/*" -not -path "*/dist/*"
+git status
+git diff --stat
+find client/public public -maxdepth 2 -type f 2>/dev/null || true
+journalctl -u deeptutor.service -n 50 --no-pager
+systemctl status deeptutor.service
+find . -maxdepth 2 -not -path '*/.*' -not -path './node_modules*' -not -path './client/node_modules*'
+find client/dist -maxdepth 2 -type f 2>/dev/null || true
+find . -name "favicon.png" -o -name "favicon.svg" -not -path "*/node_modules/*"
+find deep-tutor-web/dist -maxdepth 2 -type f 2>/dev/null || true
+cp client/public/favicon.png public/favicon.png
+systemctl cat deeptutor.service
+ss -tulpn | grep -E "5000|5002|5173" || true
+find . -name "*.env" -o -name ".env*" -not -path "*/node_modules/*"
+curl -I http://localhost:5002/favicon.png
+curl -I http://localhost:5002/dashboard/favicon.png
+git status
+cd /home/deepcode/web/deeptutor
+systemctl status deeptutor || systemctl list-units | grep deeptutor
+journalctl -u deeptutor -n 50 --no-pager
+journalctl -u deeptutor -n 25 --no-pager
+ss -tuln
+pnpm --filter deep-tutor-web dev
+find . -name "rules.md" -o -name "skills.md"
+git status
+git diff HEAD -- deep-tutor-web/src/views/chat.js
+git log --follow --name-status -n 5 -- deep-tutor-web/assets/mentor/rules.md
+git log -p -n 5 -- deep-tutor-web/vite.config.js
+git log -S "rules.md" -p -- deep-tutor-web/src/views/chat.js
+git status
+mkdir -p deep-tutor-web/public/assets && mv deep-tutor-web/assets/mentor deep-tutor-web/public/assets/
+git status
+find . -name "*.py"
+find /home/deepcode -maxdepth 3 -name "*.py" -not -path "*/node_modules/*" -not -path "*/.git/*" -not -path "*/.gemini/*"
+sudo systemctl restart deeptutor
+systemctl status deeptutor
+sleep 3 && systemctl status deeptutor
+pwsd
+pwd
+sudo su
+cd /home/deepcode/web/
+cd deeptutor/
+pnpm --filter deep-tutor-web build
+pnpm run test:validation
+pnpm --filter deep-tutor-web build
+pnpm build server
+pnpm build:server
+pnpm run start
+pnpm --filter deep-tutor-web build
+pnpm build:server
+pnpm dev
+pnpm install
+pnpm dev
+sudo su
+curl -i http://68.221.175.191:5001/health
+curl -i http://localhost:5002/health
+find . -name "*.py"
+curl -i http://localhost:5002/health
+ps aux | grep node
+systemctl status deeptutor.service
+sudo systemctl restart deeptutor.service
+curl -i http://localhost:5002/health
+journalctl -u deeptutor.service -n 50
+curl -i http://localhost:5002/health
+pnpm run test:validation
+pnpm run test:validation
+pnpm run test:validation
+pnpm run test:validation
+pnpm run test:validation
+sudo systemctl restart deeptutor.service
+sleep 4 && cat /home/deepcode/web/deeptutor/deep-tutor-web/dist/assets/mentor/rules.md
+journalctl -u deeptutor.service -n 50
+pnpm --filter deep-tutor-web build
+cat /home/deepcode/web/deeptutor/deep-tutor-web/dist/assets/mentor/rules.md
+pnpm run test:validation
+sudo -u sandbox_user cat /home/deepcode/web/deeptutor/server/.env
+sudo -u sandbox_user ls -la /home/deepcode/web/deeptutor/server
+ls -la /home/deepcode
+sudo -u sandbox_user curl -I http://localhost:5002/health
+which bwrap
+sudo unshare --net sudo -u sandbox_user curl -I http://localhost:5002/health
+sudo -u sandbox_user unshare --net curl -I http://localhost:5002/health
+ps aux | grep app.py
+sudo -l
+sudo unshare --net runuser -u sandbox_user -- curl -I http://localhost:5002/health
+sudo unshare --net runuser -u sandbox_user -- python3 -c "import urllib.request; urllib.request.urlopen('http://localhost:5002/health')"
+sudo unshare --net --pid --fork --mount-proc runuser -u sandbox_user -- ps aux
+sudo unshare --net --pid --fork --mount-proc runuser -u sandbox_user -- ls -la /home/deepcode
+sudo -n unshare --net --pid --fork --mount-proc runuser -u sandbox_user -- ls
+sudo -n unshare --net --pid --fork --mount-proc runuser -u sandbox_user -- python3 -c "print('hello from sandbox')"
+sudo -n unshare --net --pid --fork --mount-proc runuser -u sandbox_user -- ls -la /tmp
+sudo -n unshare --net --pid --fork --ipc --mount-proc runuser -u sandbox_user -- python3 -c "print('hello from sandbox')"
+echo "public class Hello { public static void main(String[] args) { System.out.println(\"Hello Java\"); } }" > /tmp/Hello.java && javac /tmp/Hello.java && sudo -n unshare --net --pid --fork --ipc --mount-proc runuser -u sandbox_user -- java -cp /tmp Hello
+echo "print('Hello Lua')" > /tmp/hello.lua && sudo -n unshare --net --pid --fork --ipc --mount-proc runuser -u sandbox_user -- lua /tmp/hello.lua
+systemctl list-units --type=service | grep -E -i "app|flask|db|tutor"
+pm2 list || supervisorctl status
+ps -ef | grep app.py
+systemctl status 818
+sudo systemctl restart api-postgres.service
+pnpm run test:validation
+systemctl status api-postgres.service
+sleep 5 && pnpm run test:validation
+sudo ss -tulpn | grep -E "5001|5002|5173"
+ps -fp 139568
+systemctl status deeptutor.service
+curl -I http://localhost:5002 && curl -I http://localhost:5002/dashboard/
+systemctl list-units --type=service | grep -E -i "nginx|caddy|apache"
+cat /etc/caddy/Caddyfile
+systemctl status caddy
+curl -Iv https://deeptutor.duckdns.org/
+host deeptutor.duckdns.org || nslookup deeptutor.duckdns.org
+sudo systemctl stop deeptutor.service
+sudo ss -tulpn | grep 5002
+ps aux | grep node
+sudo systemctl start deeptutor.service
+sleep 3 && sudo ss -tulpn | grep 5002
+systemctl status deeptutor.service
+sudo ss -tulpn | grep 5002
+grep -rn "duckdns" /etc/ 2>/dev/null
+nslookup deeptutor.duckdns.org dns.duckdns.org
+ip route
+ping -c 1 8.8.8.8
+nslookup google.com
+nslookup duckdns.org
+nslookup duckdns.org 8.8.8.8
+nslookup deeptutor.duckdns.org 8.8.8.8
+sudo ufw status
+crontab -l
+sudo crontab -l
+ls -la /etc/cron.d /etc/cron.daily /etc/cron.hourly /etc/cron.weekly /etc/cron.monthly
+systemctl list-units --all | grep -i duck
+nslookup test.duckdns.org 8.8.8.8
+sudo unshare --net --pid --fork --ipc --mount --mount-proc bash -c "mount -t tmpfs none /tmp && mkdir -p /tmp/run && touch /tmp/run/Hello.java && mount --bind /tmp/Hello.java /tmp/run/Hello.java && runuser -u sandbox_user -- ls -la /tmp/run"
+mkdir -p /tmp/test_dir && touch /tmp/test_dir/a.txt && sudo unshare --net --pid --fork --ipc --mount --mount-proc bash -c "mount --bind /tmp/test_dir /mnt && mount -t tmpfs none /tmp && mkdir -p /tmp/run && mount --move /mnt /tmp/run && runuser -u sandbox_user -- ls -la /tmp/run"
+sudo unshare --net --pid --fork --ipc --mount --mount-proc bash -c "mount --bind /tmp/test_dir /mnt && mount -t tmpfs none /tmp && mkdir -p /tmp/run && mount --move /mnt /tmp/run && runuser -u sandbox_user -- ls -la /tmp"
+sudo unshare --net --pid --fork --ipc --mount --mount-proc bash -c "mount --bind /tmp/test_dir /mnt && mount -t tmpfs none /tmp && mkdir -p /tmp/run && mount --move /mnt /tmp/run && runuser -u sandbox_user -- python3 -c \"import os; print(os.listdir('/home'))\""
+sudo unshare --net --pid --fork --ipc --mount --mount-proc bash -c "mount --bind /tmp/test_dir /mnt && mount -t tmpfs none /tmp && mkdir -p /tmp/run && mount --move /mnt /tmp/run && runuser -u sandbox_user -- python3 -c \"import os; print(os.listdir('/home/deepcode'))\""
+sudo unshare --net --pid --fork --ipc --mount --mount-proc bash -c "mount --bind /tmp/test_dir /mnt && mount -t tmpfs none /tmp && mkdir -p /tmp/run && mount --move /mnt /tmp/run && runuser -u sandbox_user -- '/usr/bin/python3' '-c' 'import os; print(os.listdir(\"/tmp/run\"))'"
+sudo unshare --net --pid --fork --ipc --mount --mount-proc bash -c "mount --bind /tmp/test_dir /mnt && mount -t tmpfs none /tmp && mkdir -p /tmp/run && mount --move /mnt /tmp/run && runuser -u sandbox_user -- '/usr/bin/python3' '-c' 'import os; print(os.listdir(\"/tmp\"))'"
+sudo unshare --net --pid --fork --ipc --mount --mount-proc bash -c "mount --bind /tmp/test_dir /mnt && mount -t tmpfs none /tmp && mkdir -p /tmp/run && mount --move /mnt /tmp/run && runuser -u sandbox_user -- '/usr/bin/python3' '-c' 'import os; print(os.listdir(\"/\"))'"
+sudo unshare --net --pid --fork --ipc --mount --mount-proc bash -c "mount --bind /tmp/test_dir /mnt && mount -t tmpfs none /tmp && mkdir -p /tmp/run && mount --move /mnt /tmp/run && runuser -u sandbox_user -- ls -la /var/log"
+sudo systemctl restart api-postgres.service
+pnpm run test:validation
+sleep 5 && pnpm run test:validation
+journalctl -u api-postgres.service -n 50 --no-pager
+sleep 5 && pnpm run test:validation
+cat /etc/caddy/Caddyfile
+systemctl status systemd-resolved
+nslookup deeptutor.duckdns.org 1.1.1.1 || nslookup deeptutor.duckdns.org 8.8.8.8
+ls ~/
+ls ~/2026-05-27_public.docx 
+ls ~
+ls ~/DeepTutor/
+clear
+systemctl status deeptutor.service 
+journalctl -u deeptutor.service 
+systemctl status deeptutor.service 
+sudo systemctl stop deeptutor.service 
+systemctl status deeptutor.service 
+systemctl start deeptutor.service 
+sudo systemctl start deeptutor.service 
+systemctl start deeptutor.service 
+systemctl status deeptutor.service 
+watch -n 1 systemctl status deeptutor.service 
+cls
+clear
+sudo -l
+sudo su sandbox_user 
+watch -n 1 systemctl status deeptutor.service 
+man sudo
+sudo nano /etc/sudoers
+fetch
+neofetch
+sudo apt install neofetch
+neofetch
+la
+less .env
+la DeepTutor/
+less .env.example 
+watch -n 1 systemctl status deeptutor.service 
+systemctl status deeptutor.service 
+nano /etc/systemd/system/deeptutor.service 
+nano /home/deepcode/scripts/deeptutor_run.sh
+ls
+ls server/
+python --version
+python3 --version
+ls
+ls web
+ls web/deeptutor/
+clear
+pg_dump -U postgresql -W -d app_db -f sql/dump.sql
+psql -U postgresql -W
+nano .env
+sudo -u postgres psql
+sudo -u postgresql psql
+sudo psql -U postgresql
+sudo psql -U wog
+sudo psql -U postgres
+sudo ls /var/lib/postgresql/
+sudo ls -a /var/lib/postgresql/16/
+psql -U postgres -W
+sudo -u postgres psql
+psql -U postgresql -h localhost
+psql -U postgresql -h localhost -d app_db
+pg_dump -U postgresql -h localhost -d app_db -s
+clear
+pg_dump -U postgresql -h localhost -d app_db -s > sql/dump.sql
+head sql/dump.sql 
+tail sql/dump.sql 
+clear
+psql -U postgresql -h localhost -d app_db
+pg_dump -U postgresql -h localhost -d app_db -a -t documents -t knowledge_chunks
+clear
+pg_dump -U postgresql -h localhost -d app_db -a -t documents -t knowledge_chunks >> sql/dump.sql
+nano sql/dump.sql 
+ll
+clear
+ll -hs sql/

@@ -10,3 +10,7 @@ SELECT * FROM chat LIMIT 100;
 SELECT * FROM conversaciones LIMIT 100;
 /* 2026-05-14 18:45:23 [2 ms] */ 
 SELECT * FROM chat LIMIT 100;
+/* 2026-05-27 16:52:06 [7 ms] */ 
+DELETE FROM "usuarios" WHERE "id" IN (32,33);
+/* 2026-05-27 16:52:22 [1 ms] */ 
+SELECT * FROM usuarios LIMIT 100;

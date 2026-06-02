@@ -7,7 +7,7 @@ import AdminPanel from './AdminPanel'
 function App() {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(false)
-  const [isAdminMode, setIsAdminMode] = useState(false)
+  const [isAdminMode, setIsAdminMode] = useState(window.location.pathname === '/admin')
 
   useEffect(() => {
     // Check if user is already logged in
@@ -15,7 +15,24 @@ function App() {
     if (storedUser) {
       setUser(JSON.parse(storedUser))
     }
+
+    // Escuchar eventos de navegación del navegador (atrás/adelante)
+    const handlePopState = () => {
+      setIsAdminMode(window.location.pathname === '/admin');
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
   }, [])
+
+  const navigateToAdmin = () => {
+    window.history.pushState({}, '', '/admin');
+    setIsAdminMode(true);
+  };
+
+  const navigateToHome = () => {
+    window.history.pushState({}, '', '/');
+    setIsAdminMode(false);
+  };
 
   const handleLoginSuccess = async (credentialResponse) => {
     setLoading(true)
@@ -45,7 +62,7 @@ function App() {
   }
 
   if (isAdminMode) {
-    return <AdminPanel onBack={() => setIsAdminMode(false)} />;
+    return <AdminPanel onBack={navigateToHome} />;
   }
 
   return (
@@ -67,7 +84,7 @@ function App() {
                   useOneTap
                 />
                 <div className="admin-shortcut">
-                  <button onClick={() => setIsAdminMode(true)} className="admin-link-btn">
+                  <button onClick={navigateToAdmin} className="admin-link-btn">
                     ⚙️ Panel de Administración
                   </button>
                 </div>
@@ -80,7 +97,7 @@ function App() {
             <h2>Welcome, {user.name}!</h2>
             <p>{user.email}</p>
             <div className="profile-actions">
-              <button onClick={() => setIsAdminMode(true)} className="admin-btn">
+              <button onClick={navigateToAdmin} className="admin-btn">
                 ⚙️ Ir al Panel de Admin
               </button>
               <button onClick={handleLogout} className="logout-btn">

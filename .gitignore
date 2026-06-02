@@ -14,7 +14,6 @@ dist/
 piper/piper
 piper/piper_phonemize
 piper/lib*
-piper/models/
 piper/espeak-ng*
 piper/pkgconfig/
 srv/rag-data/
@@ -27,20 +26,25 @@ scratch/
 .idea/
 .DS_Store
 
-~/.cache/
-~/.gemini/
-~/.gemini_agent/
-~/.local/share/keyrings/
-~/.local/share/nvim/
-~/.local/share/trash/   
+.cache/
+.gemini/
+.gemini_agent/
+.local/
+.dbclient/
+.psql_history
+.terminfo/
 .cache/*
 .npm-cache
 .npm/_cacache*
 .gemini*
 .copilot*
 .antigravity*
-.vscode*
-*.venv*
-node_modules/*
+.vscode/
+.venv/
+node_modules/
 
 .gitignore
+web/*
+~/.local*
+.local/*
+.vscode-server/*
