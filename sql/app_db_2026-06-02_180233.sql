@@ -2,8 +2,6 @@
 -- PostgreSQL database dump
 --
 
-\restrict GmGIBR6iWidWJVzkIdv7mDjUG3iS1r9jGLcHRMFfvqJqDq2ahvceGXiIiAF0Va6
-
 -- Dumped from database version 16.14 (Ubuntu 16.14-0ubuntu0.24.04.1)
 -- Dumped by pg_dump version 16.14 (Ubuntu 16.14-0ubuntu0.24.04.1)
 
@@ -22,6 +20,7 @@ SET row_security = off;
 -- Name: vector; Type: EXTENSION; Schema: -; Owner: -
 --
 
+CREATE EXTENSION IF NOT EXISTS vector WITH SCHEMA public;
 
 --
 -- Name: EXTENSION vector; Type: COMMENT; Schema: -; Owner: 
@@ -882,6 +881,4 @@ ALTER TABLE ONLY public.user_errors
 --
 -- PostgreSQL database dump complete
 --
-
-\unrestrict GmGIBR6iWidWJVzkIdv7mDjUG3iS1r9jGLcHRMFfvqJqDq2ahvceGXiIiAF0Va6
 
