@@ -5,7 +5,7 @@ import os
 import re
 from sentence_transformers import SentenceTransformer
 
-PDF_DIR = "/home/deepcode/srv/rag-data/pdf"
+PDF_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "rag-data", "pdf")
 
 DB_CONFIG = {
     "dbname": "app_db",
