@@ -22,8 +22,6 @@ SET row_security = off;
 -- Name: vector; Type: EXTENSION; Schema: -; Owner: -
 --
 
-CREATE EXTENSION IF NOT EXISTS vector WITH SCHEMA public;
-
 
 --
 -- Name: EXTENSION vector; Type: COMMENT; Schema: -; Owner: 
@@ -37,7 +35,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: casos_prueba; Type: TABLE; Schema: public; Owner: postgres
+-- Name: casos_prueba; Type: TABLE; Schema: public; Owner: postgresql
 --
 
 CREATE TABLE public.casos_prueba (
@@ -48,10 +46,10 @@ CREATE TABLE public.casos_prueba (
 );
 
 
-ALTER TABLE public.casos_prueba OWNER TO postgres;
+ALTER TABLE public.casos_prueba OWNER TO postgresql;
 
 --
--- Name: casos_prueba_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: casos_prueba_id_seq; Type: SEQUENCE; Schema: public; Owner: postgresql
 --
 
 CREATE SEQUENCE public.casos_prueba_id_seq
@@ -63,17 +61,17 @@ CREATE SEQUENCE public.casos_prueba_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.casos_prueba_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.casos_prueba_id_seq OWNER TO postgresql;
 
 --
--- Name: casos_prueba_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: casos_prueba_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgresql
 --
 
 ALTER SEQUENCE public.casos_prueba_id_seq OWNED BY public.casos_prueba.id;
 
 
 --
--- Name: chat; Type: TABLE; Schema: public; Owner: postgres
+-- Name: chat; Type: TABLE; Schema: public; Owner: postgresql
 --
 
 CREATE TABLE public.chat (
@@ -86,10 +84,10 @@ CREATE TABLE public.chat (
 );
 
 
-ALTER TABLE public.chat OWNER TO postgres;
+ALTER TABLE public.chat OWNER TO postgresql;
 
 --
--- Name: chat_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: chat_id_seq; Type: SEQUENCE; Schema: public; Owner: postgresql
 --
 
 CREATE SEQUENCE public.chat_id_seq
@@ -101,17 +99,17 @@ CREATE SEQUENCE public.chat_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.chat_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.chat_id_seq OWNER TO postgresql;
 
 --
--- Name: chat_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: chat_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgresql
 --
 
 ALTER SEQUENCE public.chat_id_seq OWNED BY public.chat.id;
 
 
 --
--- Name: conversaciones; Type: TABLE; Schema: public; Owner: postgres
+-- Name: conversaciones; Type: TABLE; Schema: public; Owner: postgresql
 --
 
 CREATE TABLE public.conversaciones (
@@ -122,10 +120,10 @@ CREATE TABLE public.conversaciones (
 );
 
 
-ALTER TABLE public.conversaciones OWNER TO postgres;
+ALTER TABLE public.conversaciones OWNER TO postgresql;
 
 --
--- Name: conversaciones_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: conversaciones_id_seq; Type: SEQUENCE; Schema: public; Owner: postgresql
 --
 
 CREATE SEQUENCE public.conversaciones_id_seq
@@ -137,10 +135,10 @@ CREATE SEQUENCE public.conversaciones_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.conversaciones_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.conversaciones_id_seq OWNER TO postgresql;
 
 --
--- Name: conversaciones_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: conversaciones_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgresql
 --
 
 ALTER SEQUENCE public.conversaciones_id_seq OWNED BY public.conversaciones.id;
@@ -189,7 +187,7 @@ ALTER SEQUENCE public.documents_id_seq OWNED BY public.documents.id;
 
 
 --
--- Name: ejercicios; Type: TABLE; Schema: public; Owner: postgres
+-- Name: ejercicios; Type: TABLE; Schema: public; Owner: postgresql
 --
 
 CREATE TABLE public.ejercicios (
@@ -206,10 +204,10 @@ CREATE TABLE public.ejercicios (
 );
 
 
-ALTER TABLE public.ejercicios OWNER TO postgres;
+ALTER TABLE public.ejercicios OWNER TO postgresql;
 
 --
--- Name: ejercicios_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: ejercicios_id_seq; Type: SEQUENCE; Schema: public; Owner: postgresql
 --
 
 CREATE SEQUENCE public.ejercicios_id_seq
@@ -221,17 +219,17 @@ CREATE SEQUENCE public.ejercicios_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.ejercicios_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.ejercicios_id_seq OWNER TO postgresql;
 
 --
--- Name: ejercicios_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: ejercicios_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgresql
 --
 
 ALTER SEQUENCE public.ejercicios_id_seq OWNED BY public.ejercicios.id;
 
 
 --
--- Name: errores_detectados; Type: TABLE; Schema: public; Owner: postgres
+-- Name: errores_detectados; Type: TABLE; Schema: public; Owner: postgresql
 --
 
 CREATE TABLE public.errores_detectados (
@@ -242,10 +240,10 @@ CREATE TABLE public.errores_detectados (
 );
 
 
-ALTER TABLE public.errores_detectados OWNER TO postgres;
+ALTER TABLE public.errores_detectados OWNER TO postgresql;
 
 --
--- Name: errores_detectados_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: errores_detectados_id_seq; Type: SEQUENCE; Schema: public; Owner: postgresql
 --
 
 CREATE SEQUENCE public.errores_detectados_id_seq
@@ -257,10 +255,10 @@ CREATE SEQUENCE public.errores_detectados_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.errores_detectados_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.errores_detectados_id_seq OWNER TO postgresql;
 
 --
--- Name: errores_detectados_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: errores_detectados_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgresql
 --
 
 ALTER SEQUENCE public.errores_detectados_id_seq OWNED BY public.errores_detectados.id;
@@ -308,7 +306,7 @@ ALTER SEQUENCE public.knowledge_chunks_id_seq OWNED BY public.knowledge_chunks.i
 
 
 --
--- Name: progreso_usuario; Type: TABLE; Schema: public; Owner: postgres
+-- Name: progreso_usuario; Type: TABLE; Schema: public; Owner: postgresql
 --
 
 CREATE TABLE public.progreso_usuario (
@@ -321,10 +319,10 @@ CREATE TABLE public.progreso_usuario (
 );
 
 
-ALTER TABLE public.progreso_usuario OWNER TO postgres;
+ALTER TABLE public.progreso_usuario OWNER TO postgresql;
 
 --
--- Name: progreso_usuario_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: progreso_usuario_id_seq; Type: SEQUENCE; Schema: public; Owner: postgresql
 --
 
 CREATE SEQUENCE public.progreso_usuario_id_seq
@@ -336,17 +334,17 @@ CREATE SEQUENCE public.progreso_usuario_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.progreso_usuario_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.progreso_usuario_id_seq OWNER TO postgresql;
 
 --
--- Name: progreso_usuario_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: progreso_usuario_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgresql
 --
 
 ALTER SEQUENCE public.progreso_usuario_id_seq OWNED BY public.progreso_usuario.id;
 
 
 --
--- Name: topics; Type: TABLE; Schema: public; Owner: postgres
+-- Name: topics; Type: TABLE; Schema: public; Owner: postgresql
 --
 
 CREATE TABLE public.topics (
@@ -357,10 +355,10 @@ CREATE TABLE public.topics (
 );
 
 
-ALTER TABLE public.topics OWNER TO postgres;
+ALTER TABLE public.topics OWNER TO postgresql;
 
 --
--- Name: topics_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: topics_id_seq; Type: SEQUENCE; Schema: public; Owner: postgresql
 --
 
 CREATE SEQUENCE public.topics_id_seq
@@ -372,10 +370,10 @@ CREATE SEQUENCE public.topics_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.topics_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.topics_id_seq OWNER TO postgresql;
 
 --
--- Name: topics_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: topics_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgresql
 --
 
 ALTER SEQUENCE public.topics_id_seq OWNED BY public.topics.id;
@@ -420,7 +418,7 @@ ALTER SEQUENCE public.user_ejer_id_seq OWNED BY public.user_ejer.id;
 
 
 --
--- Name: user_errors; Type: TABLE; Schema: public; Owner: postgres
+-- Name: user_errors; Type: TABLE; Schema: public; Owner: postgresql
 --
 
 CREATE TABLE public.user_errors (
@@ -432,10 +430,10 @@ CREATE TABLE public.user_errors (
 );
 
 
-ALTER TABLE public.user_errors OWNER TO postgres;
+ALTER TABLE public.user_errors OWNER TO postgresql;
 
 --
--- Name: user_errors_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: user_errors_id_seq; Type: SEQUENCE; Schema: public; Owner: postgresql
 --
 
 CREATE SEQUENCE public.user_errors_id_seq
@@ -447,17 +445,17 @@ CREATE SEQUENCE public.user_errors_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.user_errors_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.user_errors_id_seq OWNER TO postgresql;
 
 --
--- Name: user_errors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: user_errors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgresql
 --
 
 ALTER SEQUENCE public.user_errors_id_seq OWNED BY public.user_errors.id;
 
 
 --
--- Name: usuarios; Type: TABLE; Schema: public; Owner: postgres
+-- Name: usuarios; Type: TABLE; Schema: public; Owner: postgresql
 --
 
 CREATE TABLE public.usuarios (
@@ -472,10 +470,10 @@ CREATE TABLE public.usuarios (
 );
 
 
-ALTER TABLE public.usuarios OWNER TO postgres;
+ALTER TABLE public.usuarios OWNER TO postgresql;
 
 --
--- Name: usuarios_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: usuarios_id_seq; Type: SEQUENCE; Schema: public; Owner: postgresql
 --
 
 CREATE SEQUENCE public.usuarios_id_seq
@@ -487,31 +485,31 @@ CREATE SEQUENCE public.usuarios_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.usuarios_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.usuarios_id_seq OWNER TO postgresql;
 
 --
--- Name: usuarios_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: usuarios_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgresql
 --
 
 ALTER SEQUENCE public.usuarios_id_seq OWNED BY public.usuarios.id;
 
 
 --
--- Name: casos_prueba id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: casos_prueba id; Type: DEFAULT; Schema: public; Owner: postgresql
 --
 
 ALTER TABLE ONLY public.casos_prueba ALTER COLUMN id SET DEFAULT nextval('public.casos_prueba_id_seq'::regclass);
 
 
 --
--- Name: chat id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: chat id; Type: DEFAULT; Schema: public; Owner: postgresql
 --
 
 ALTER TABLE ONLY public.chat ALTER COLUMN id SET DEFAULT nextval('public.chat_id_seq'::regclass);
 
 
 --
--- Name: conversaciones id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: conversaciones id; Type: DEFAULT; Schema: public; Owner: postgresql
 --
 
 ALTER TABLE ONLY public.conversaciones ALTER COLUMN id SET DEFAULT nextval('public.conversaciones_id_seq'::regclass);
@@ -525,14 +523,14 @@ ALTER TABLE ONLY public.documents ALTER COLUMN id SET DEFAULT nextval('public.do
 
 
 --
--- Name: ejercicios id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: ejercicios id; Type: DEFAULT; Schema: public; Owner: postgresql
 --
 
 ALTER TABLE ONLY public.ejercicios ALTER COLUMN id SET DEFAULT nextval('public.ejercicios_id_seq'::regclass);
 
 
 --
--- Name: errores_detectados id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: errores_detectados id; Type: DEFAULT; Schema: public; Owner: postgresql
 --
 
 ALTER TABLE ONLY public.errores_detectados ALTER COLUMN id SET DEFAULT nextval('public.errores_detectados_id_seq'::regclass);
@@ -546,14 +544,14 @@ ALTER TABLE ONLY public.knowledge_chunks ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
--- Name: progreso_usuario id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: progreso_usuario id; Type: DEFAULT; Schema: public; Owner: postgresql
 --
 
 ALTER TABLE ONLY public.progreso_usuario ALTER COLUMN id SET DEFAULT nextval('public.progreso_usuario_id_seq'::regclass);
 
 
 --
--- Name: topics id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: topics id; Type: DEFAULT; Schema: public; Owner: postgresql
 --
 
 ALTER TABLE ONLY public.topics ALTER COLUMN id SET DEFAULT nextval('public.topics_id_seq'::regclass);
@@ -567,21 +565,21 @@ ALTER TABLE ONLY public.user_ejer ALTER COLUMN id SET DEFAULT nextval('public.us
 
 
 --
--- Name: user_errors id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: user_errors id; Type: DEFAULT; Schema: public; Owner: postgresql
 --
 
 ALTER TABLE ONLY public.user_errors ALTER COLUMN id SET DEFAULT nextval('public.user_errors_id_seq'::regclass);
 
 
 --
--- Name: usuarios id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: usuarios id; Type: DEFAULT; Schema: public; Owner: postgresql
 --
 
 ALTER TABLE ONLY public.usuarios ALTER COLUMN id SET DEFAULT nextval('public.usuarios_id_seq'::regclass);
 
 
 --
--- Name: casos_prueba casos_prueba_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: casos_prueba casos_prueba_pkey; Type: CONSTRAINT; Schema: public; Owner: postgresql
 --
 
 ALTER TABLE ONLY public.casos_prueba
@@ -589,7 +587,7 @@ ALTER TABLE ONLY public.casos_prueba
 
 
 --
--- Name: chat chat_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: chat chat_pkey; Type: CONSTRAINT; Schema: public; Owner: postgresql
 --
 
 ALTER TABLE ONLY public.chat
@@ -597,7 +595,7 @@ ALTER TABLE ONLY public.chat
 
 
 --
--- Name: conversaciones conversaciones_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: conversaciones conversaciones_pkey; Type: CONSTRAINT; Schema: public; Owner: postgresql
 --
 
 ALTER TABLE ONLY public.conversaciones
@@ -613,7 +611,7 @@ ALTER TABLE ONLY public.documents
 
 
 --
--- Name: ejercicios ejercicios_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: ejercicios ejercicios_pkey; Type: CONSTRAINT; Schema: public; Owner: postgresql
 --
 
 ALTER TABLE ONLY public.ejercicios
@@ -621,7 +619,7 @@ ALTER TABLE ONLY public.ejercicios
 
 
 --
--- Name: errores_detectados errores_detectados_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: errores_detectados errores_detectados_pkey; Type: CONSTRAINT; Schema: public; Owner: postgresql
 --
 
 ALTER TABLE ONLY public.errores_detectados
@@ -637,7 +635,7 @@ ALTER TABLE ONLY public.knowledge_chunks
 
 
 --
--- Name: progreso_usuario progreso_usuario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: progreso_usuario progreso_usuario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgresql
 --
 
 ALTER TABLE ONLY public.progreso_usuario
@@ -645,7 +643,7 @@ ALTER TABLE ONLY public.progreso_usuario
 
 
 --
--- Name: topics topics_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: topics topics_pkey; Type: CONSTRAINT; Schema: public; Owner: postgresql
 --
 
 ALTER TABLE ONLY public.topics
@@ -661,7 +659,7 @@ ALTER TABLE ONLY public.user_ejer
 
 
 --
--- Name: user_errors user_errors_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: user_errors user_errors_pkey; Type: CONSTRAINT; Schema: public; Owner: postgresql
 --
 
 ALTER TABLE ONLY public.user_errors
@@ -669,7 +667,7 @@ ALTER TABLE ONLY public.user_errors
 
 
 --
--- Name: usuarios usuarios_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: usuarios usuarios_email_key; Type: CONSTRAINT; Schema: public; Owner: postgresql
 --
 
 ALTER TABLE ONLY public.usuarios
@@ -677,7 +675,7 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- Name: usuarios usuarios_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: usuarios usuarios_pkey; Type: CONSTRAINT; Schema: public; Owner: postgresql
 --
 
 ALTER TABLE ONLY public.usuarios
@@ -685,7 +683,7 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- Name: usuarios usuarios_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: usuarios usuarios_unique; Type: CONSTRAINT; Schema: public; Owner: postgresql
 --
 
 ALTER TABLE ONLY public.usuarios
@@ -763,7 +761,7 @@ CREATE INDEX idx_documents_topic_id ON public.documents USING btree (topic_id);
 
 
 --
--- Name: casos_prueba casos_prueba_ejercicio_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: casos_prueba casos_prueba_ejercicio_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresql
 --
 
 ALTER TABLE ONLY public.casos_prueba
@@ -771,7 +769,7 @@ ALTER TABLE ONLY public.casos_prueba
 
 
 --
--- Name: chat chat_conversacion_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: chat chat_conversacion_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresql
 --
 
 ALTER TABLE ONLY public.chat
@@ -779,7 +777,7 @@ ALTER TABLE ONLY public.chat
 
 
 --
--- Name: chat chat_usuario_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: chat chat_usuario_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresql
 --
 
 ALTER TABLE ONLY public.chat
@@ -787,7 +785,7 @@ ALTER TABLE ONLY public.chat
 
 
 --
--- Name: conversaciones conversaciones_usuario_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: conversaciones conversaciones_usuario_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresql
 --
 
 ALTER TABLE ONLY public.conversaciones
@@ -795,7 +793,7 @@ ALTER TABLE ONLY public.conversaciones
 
 
 --
--- Name: ejercicios ejercicios_topic_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: ejercicios ejercicios_topic_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresql
 --
 
 ALTER TABLE ONLY public.ejercicios
@@ -827,7 +825,7 @@ ALTER TABLE ONLY public.knowledge_chunks
 
 
 --
--- Name: progreso_usuario progreso_usuario_topic_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: progreso_usuario progreso_usuario_topic_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresql
 --
 
 ALTER TABLE ONLY public.progreso_usuario
@@ -835,7 +833,7 @@ ALTER TABLE ONLY public.progreso_usuario
 
 
 --
--- Name: progreso_usuario progreso_usuario_usuario_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: progreso_usuario progreso_usuario_usuario_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresql
 --
 
 ALTER TABLE ONLY public.progreso_usuario
@@ -843,7 +841,7 @@ ALTER TABLE ONLY public.progreso_usuario
 
 
 --
--- Name: topics topics_parent_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: topics topics_parent_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresql
 --
 
 ALTER TABLE ONLY public.topics
@@ -867,7 +865,7 @@ ALTER TABLE ONLY public.user_ejer
 
 
 --
--- Name: user_errors user_errors_error_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: user_errors user_errors_error_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresql
 --
 
 ALTER TABLE ONLY public.user_errors
@@ -875,7 +873,7 @@ ALTER TABLE ONLY public.user_errors
 
 
 --
--- Name: user_errors user_errors_usuario_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: user_errors user_errors_usuario_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresql
 --
 
 ALTER TABLE ONLY public.user_errors
