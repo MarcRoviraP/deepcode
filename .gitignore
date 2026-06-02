@@ -18,7 +18,6 @@ piper/espeak-ng*
 piper/pkgconfig/
 srv/rag-data/
 *.tar.gz
-app_db_*.sql
 scratch/
 
 # IDE

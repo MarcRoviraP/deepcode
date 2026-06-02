@@ -41,19 +41,20 @@ Existen dos APIs de Flask:
    python piper/src/app.py &
    ```
 
-## 3. Configuración del Frontend (Node.js)
+## 3. Configuración del Frontend (Web)
 1. Entra al directorio del frontend:
    ```bash
-   cd DeepTutor/deep-tutor-web
+   cd web/deeptutor
    ```
 2. Instala dependencias:
    ```bash
-   npm install
+   pnpm install
    ```
 3. Inicia el servidor de desarrollo:
    ```bash
-   npm run dev
+   pnpm run dev
    ```
+   *(Nota: para producción usamos `pnpm run start` gestionado por un servicio systemd).*
 
 ## 4. Texto a Voz (Piper)
 El servidor utiliza Piper para TTS. 
