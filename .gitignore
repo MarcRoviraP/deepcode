@@ -16,7 +16,6 @@ piper/piper_phonemize
 piper/lib*
 piper/espeak-ng*
 piper/pkgconfig/
-srv/rag-data/
 *.tar.gz
 scratch/
 
