@@ -27,7 +27,6 @@ SET row_security = off;
 -- Name: EXTENSION vector; Type: COMMENT; Schema: -; Owner: 
 --
 
-COMMENT ON EXTENSION vector IS 'vector data type and ivfflat and hnsw access methods';
 
 
 SET default_tablespace = '';
