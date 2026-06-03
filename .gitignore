@@ -1,48 +1,91 @@
-# Python
-venv/
+# --- System & IDE ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.bak
+*.tmp
+.cache/
+.npm/
+.nvm/
+.local/
+.config/
+.dotnet/
+.ssh/
+.bash_history
+.bash_logout
+.bashrc
+.profile
+.lesshst
+.python_history
+.wget-hsts
+.sudo_as_admin_successful
+.gitconfig
+nohup.out
+
+# --- Python ---
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.ipynb_checkpoints/
 .env
-*.log
 
-# Node
+# --- Node ---
 node_modules/
-dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 .env.local
+.env.development.local
+.env.test.local
+.env.production.local
+dist/
+build/
 
-# Project Specific
+# --- Project Specific ---
+.agents/
+.engram/
+.gentle-ai/
+.gemini/
+.gemini_agent/
+.antigravity*
+.copilot*
+
+# Piper / Models
 piper/piper
 piper/piper_phonemize
 piper/lib*
 piper/espeak-ng*
 piper/pkgconfig/
+piper/models/
+*.onnx
+
+# Data & Dumps
+*.sql
 *.tar.gz
 scratch/
 
-# IDE
-.vscode/
-.idea/
-.DS_Store
-
-.cache/
-.gemini/
-.gemini_agent/
-.local/
-.dbclient/
-.psql_history
-.terminfo/
-.cache/*
-.npm-cache
-.npm/_cacache*
-.gemini*
-.copilot*
-.antigravity*
-.vscode/
-.venv/
-node_modules/
-
-.gitignore
-web/*
-~/.local*
-.local/*
-.vscode-server/*
+# Temporary / Misc
+a.txt
+test-curl.txt
+test.php
+test.py
+2026-05-27_public.docx
+DeepTutor/
+server/DeepTutor
+.dbclient

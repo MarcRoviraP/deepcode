@@ -1,4 +1,4 @@
-import fitz
+import pymupdf
 import psycopg2
 import json
 import os
@@ -63,7 +63,7 @@ def detect_level(filename):
 # 1. PDF → texto
 def extract_text(path):
     try:
-        doc = fitz.open(path)
+        doc = pymupdf.open(path)
         return "\n".join(page.get_text() for page in doc).replace("\x00", "")
     except Exception as e:
         print(f"Error extrayendo {path}: {e}")
