@@ -21,7 +21,7 @@ Se han instalado varios modelos de alta calidad en la carpeta `models/`. Puedes 
    ```bash
    python3 -m venv .venv
    source .venv/bin/activate
-   pip install flask flask-cors gunicorn
+   pip install flask flask-cors gunicorn dotenv
    ```
 
 2. **Binarios:** El ejecutable `piper` y las librerías `.so` deben estar en la raíz del proyecto.
