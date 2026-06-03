@@ -1,0 +1,15 @@
+[Unit]
+Description=DeepTutor Frontend Service
+After=network.target
+
+[Service]
+Type=simple
+User=deepcode
+Group=deepcode
+WorkingDirectory=/
+ExecStart=/bin/bash /home/deepcode/scripts/deeptutor_run.sh
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

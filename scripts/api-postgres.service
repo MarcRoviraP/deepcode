@@ -1,0 +1,13 @@
+[Unit]
+Description=Postgresql API Rest
+After=network.target
+
+[Service]
+User=deepcode
+Group=deepcode
+WorkingDirectory=/home/deepcode
+ExecStart=/home/deepcode/venv/bin/python /home/deepcode/app.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

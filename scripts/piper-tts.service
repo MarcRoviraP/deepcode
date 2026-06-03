@@ -1,0 +1,13 @@
+[Unit]
+Description=Piper TTS API Service
+After=network.target
+
+[Service]
+User=deepcode
+Group=deepcode
+WorkingDirectory=/home/deepcode/piper
+ExecStart=/home/deepcode/piper/.venv/bin/gunicorn --bind 0.0.0.0:5000 --timeout 600 --workers 1 --chdir src app:app
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
